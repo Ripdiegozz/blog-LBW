@@ -2,17 +2,13 @@
 import CARD from "../../components/postsCard.astro";
 import Layout from "../../components/Layout.astro";
 
-const books = await fetch("http://localhost:7000/books")
-const image = await books.json()
+// const books = await fetch("http://localhost:7000/books")
+// const image = await books.json()
 ---
 
 <Layout customTitle="Publicaciones - LBW">
     <div class="text-5xl text-center p-8"><h2>Publicaciones</h2></div>
     <div class="main__entries flex flex-wrap justify-center gap-y-[3rem] gap-x-[7rem]">
-        {
-            image.map(post => {
-                return <CARD bookURL={post.bookURL} imageALT={post.name} imageURL={post.image}></CARD>
-            })
-        }
+        <p>[libros]</p>
     </div>
 </Layout>
