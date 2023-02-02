@@ -1,5 +1,4 @@
 ---
-import defaultCSS from "../assets/base.css"
 import fundationLogo from "/FundationLogo-min.png"
 
 interface Props{
@@ -16,8 +15,8 @@ const {customTitle = "Fundaleon"} = Astro.props
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{customTitle}</title>
-    <link rel="stylesheet" href={defaultCSS}>
-    <link rel="icon" href="/public/favicon.svg" type="svg/image/x-icon">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="icon" href="/favicon.svg" type="svg">
     <script src="https://kit.fontawesome.com/a8f367ec01.js" crossorigin="anonymous"></script>
 </head>
 <body>
