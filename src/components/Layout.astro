@@ -1,0 +1,91 @@
+---
+import defaultCSS from "../assets/base.css"
+import fundationLogo from "/FundationLogo-min.png"
+
+interface Props{
+    customTitle?: string;
+}
+
+const {customTitle = "Fundaleon"} = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{customTitle}</title>
+    <link rel="stylesheet" href={defaultCSS}>
+    <link rel="icon" href="/public/favicon.svg" type="svg/image/x-icon">
+    <script src="https://kit.fontawesome.com/a8f367ec01.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="w-full">
+        <nav class="flex flex-wrap justify-evenly h-[5.4rem] bg-[#812626] fixed z-10 w-full">
+            <a href="http://localhost:3000" class="flex flex-wrap items-center gap-2 text-white text-2xl font-serif-sc font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                    <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                    <line x1="3" y1="6" x2="3" y2="19" />
+                    <line x1="12" y1="6" x2="12" y2="19" />
+                    <line x1="21" y1="6" x2="21" y2="19" />
+                </svg>
+                Fundación LBW
+            </a>
+            <ul class="flex flex-wrap items-center gap-2 text-white">
+                <li><a href="http://localhost:3000" class="p-4 hover:bg-[#ac4a4a] text-2xl transition-all duration-300 font-serif">Inicio</a></li>
+                <li><a href="#" class="p-4 hover:bg-[#ac4a4a] text-2xl transition-all duration-300 font-serif">Historial</a></li>
+                <li><a href="/gallery" class="p-4 hover:bg-[#ac4a4a] text-2xl transition-all duration-300 font-serif">Galeria</a></li>
+                <li><a href="/library" class="p-4 hover:bg-[#ac4a4a] text-2xl transition-all duration-300 font-serif">Biblioteca</a></li>
+                <li><a href="/posts" class="p-4 hover:bg-[#ac4a4a] text-2xl transition-all duration-300 font-serif">Publicaciones</a></li>
+            </ul>
+        </nav>
+        <div class="pt-14">
+             <img src={fundationLogo} class="border-b-8 border-red-900">
+        </div>
+    </header>
+    <main class="container 2xl mx-auto pt-18">
+        <slot/>
+    </main>
+    <footer class="footer">
+        <div class="footer__addr">
+          <h1 class="footer__logo font-bold font-serif">Fundación Literaria León Bienvenido Weffer</h1>
+              
+          <h2 class="font-bold font-serif">Contacto</h2>
+          
+          <address style="padding: 10px 0;">
+            Av. Josefa Camejo con calle 5 de Julio, Complejo Cultural "Josefa Camejo", Pueblo Nuevo de Paraguaná, Edo Falcón, Venezuela.<br>
+            <a class="footer__btn" href="mailto:sample@mail.com">Envíanos un correo!</a>
+          </address>
+        </div>
+        
+        <ul class="footer__nav">
+            <li class="nav__item">
+                <h2 class="nav__title">Redes Sociales</h2>
+            
+                <ul class="nav__ul">
+                    <li>
+                        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    </li>
+              
+                    <li>
+                        <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+                    </li>
+              
+                    <li>
+                        <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="legal">
+          <p>&copy; 2023 Fundación Literaria Leon Bienvenido Weffer.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js" integrity="sha512-2VqLVM3WCyaqUgQb2hpoWHSus021RIN0Jq0wfrLqqLh+anm1kW/H4Yw7HVu3D5W4nbdUQmAA2mqQv2JEoy+kPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

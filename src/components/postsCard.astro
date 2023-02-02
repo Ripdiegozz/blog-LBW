@@ -1,0 +1,33 @@
+---
+interface Props{
+    imageURL: string;
+    imageALT: string;
+    bookURL: string;
+}
+
+const {imageURL = "", imageALT = "", bookURL=  ""} = Astro.props
+
+---
+
+<a href={bookURL} target="_blank" class="blog-card transition-all duration-300">
+    <img src={imageURL} alt={imageALT}>
+</a>
+
+<style>
+
+    .blog-card{
+        width: 18%;
+    }
+
+    .blog-card:hover, .blog-card:active{
+        transform: translateY(2%);
+        box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);
+    }
+
+    .blog-card img{
+        width: 100%;
+        height: 100%;
+        border: 1px solid #812626;
+    }
+
+</style>

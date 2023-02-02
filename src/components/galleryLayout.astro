@@ -1,0 +1,65 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props{
+    title?: string;
+}
+
+const {title = "Titulo por defecto"} = Astro.props
+---
+
+<Layout>
+    <section class="main__entries flex">
+        <div class="blog-card">
+            <div class="text-header">
+                <h2>{title}</h2>
+            </div>
+            <div class="text-main">
+                <p>
+                    <slot/>
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .main__entries{
+        width: 95%;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .blog-card{
+        width: 90%;
+        margin:15px;
+        border:1px solid #812626;
+        text-align:center;
+    }
+
+    .text-header{ 
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .text-header h2{
+        margin-top:25px;
+        font-size: 42px;
+        color:#202020;
+        text-align: center;
+    }
+            
+    .text-main{
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height:22px;
+        text-align: justify;
+        font-style: italic;
+        font-size: 20px;
+        margin: 0 auto;
+        width: 95%;
+    }
+
+</style>
