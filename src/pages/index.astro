@@ -1,7 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import asideFace from "../images/lbw-images/face.jpg"
-import asideMarta from "/postsImages/books/2.jpg"
+import asideMarta from "../images/lbw-images/2.jpg"
 import asidePeregrinaciones from "/postsImages/books/1.jpg"
 ---
 
@@ -10,15 +10,19 @@ import asidePeregrinaciones from "/postsImages/books/1.jpg"
 		<aside class="LBW__section">
 					<div class="LBW__section--box flex flex-col">
 						<a data-fslightbox="lightbox" href={asideFace}><img src={asideFace} alt="foto-LBW" class="face"></a>
-						<h3 class="mb-[20px]">León Bienvenido Wefer</h3>
+						<h3>León Bienvenido Wefer</h3>
+						<p class="mb-[35px]">1885 - 1917</p>
 					</div>
 					<div class="LBW__section--box flex flex-col">
 						<a data-fslightbox="lightbox" href={asidePeregrinaciones}><img src={asidePeregrinaciones} alt="foto-Peregrinaciones"></a>
 						<h3>“Peregrinaciones”</h3>
+						<p>Primera Edición, 1905</p>
+						<p class="mb-[35px]">Segunda Edición Ampliada, 2006</p>
 					</div>
 					<div class="LBW__section--box flex flex-col">
-						<a data-fslightbox="lightbox" href={asideMarta}><img src={asideMarta} alt="foto-Maria"></a>
+						<a data-fslightbox="lightbox" href={asideMarta}><img src={asideMarta} alt="foto-Marta"></a>
 						<h3>"Marta"</h3>
+						<p></p>
 					</div>
 		</aside>
 		<section class="main__entries flex flex-col">
@@ -136,7 +140,10 @@ import asidePeregrinaciones from "/postsImages/books/1.jpg"
 
 	.LBW__section--box h3{
 		text-align: center;
-		padding: 8px;
+		padding-top: 8px;
+		padding-bottom: 0px;
+		padding-left: 8px;
+		padding-right: 8px;
 		font-size: 18px;
 		color: rgb(0, 0, 0);
 	}
@@ -145,8 +152,8 @@ import asidePeregrinaciones from "/postsImages/books/1.jpg"
     text-decoration: none;
     color: rgb(0, 0, 0);
     text-align: center;
-    font-size: 18px;
-	padding-bottom: 1em;
-}
+    font-size: 14px;
+	padding-bottom: 0;
+	}
 
 </style>
