@@ -1,5 +1,6 @@
 ---
 import GalleryLayout from "../../../components/galleryLayout.astro";
+const images = await Astro.glob("/public/galleryImages/Encuentro-de-Jovenes-Liceistas/*.jpg");
 ---
 <GalleryLayout title="Encuentros de Jóvenes Liceístas">
     <p>
@@ -9,26 +10,14 @@ import GalleryLayout from "../../../components/galleryLayout.astro";
         Con mucho entusiamo y gran participación fueron recibidos por la comunidad estudiantil y docentes de los liceos de Adaure, Pueblo Nuevo, Moruy, Santa Rita, Adicora, San Jose, El Hato, Buena Vista, El Vínculo, Jadacaquiva y Baraived.<br> 
         Las experiencias de un acercamiento distinto al libro y la lectura fue gratificante para los estudiantes, lograndose la producción de ejercicios creadores plasmados en hojas libres en el taller “el tendedero de poemas” así como la edición del texto “         , y la participación de los estudiantes del Liceo “Santa Rita” Aniuska Refunjol y Andrés Riera en el encuentro Nacional del “Ciruito de Jóvenes Liceitas” celebrado en Mérida, y  la participación de Aniuska Refunjol en la publicación del texto “nuevas voces en la mirada del mañana” editado por la Casa Nacional de las Letras Andrés Bello.<br>
 
-    </p><br>
-
+    </p>
     <h2 class="text-center text-4xl p-8">Galería</h2>
     <div class="flex flex-wrap gap-3 pictures__box justify-center">
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/12.jpg"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/12.jpg" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/3.jpg"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/3.jpg" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/5.jpg"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/5.jpg" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/6.jpg"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/6.jpg" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/1.JPG"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/1.JPG" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/2.JPG"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/2.JPG" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/3.JPG"><img src="/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/3.JPG" alt="foto-encuentro-liceistas">
-        </a>
-        <a data-fslightbox="lightbox" href="/public/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/5.jpg"><img src="/public/galleryImages/Encuentro-de-Jovenes-Liceistas/IV-Encuentro-de-Jovenes-Liceistas-del-Municipio-Falcon/5.jpg" alt="foto-encuentro-liceistas">
-        </a>
+        {
+            images.map(image => {
+                return <a data-fslightbox="lightbox" href={image.default}><img src={image.default} alt="imagen-encuentro-liceistas"></a>
+            })
+        }
     </div>
 </GalleryLayout>                
 

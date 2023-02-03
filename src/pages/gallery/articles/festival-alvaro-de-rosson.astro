@@ -1,5 +1,6 @@
 ---
 import GalleryLayout from "../../../components/galleryLayout.astro";
+const images = await Astro.glob("/public/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/*.jpg")
 ---
 <GalleryLayout title="Festival de teatro Álvaro de Rossón">
     <p>
@@ -8,52 +9,11 @@ import GalleryLayout from "../../../components/galleryLayout.astro";
 
     <h2 class="text-center text-4xl p-8">Galería</h2>
     <div class="flex flex-wrap gap-3 pictures__box justify-center">
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/1.JPG"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/1.JPG" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/2.JPG"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/2.JPG" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/3.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/3.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/4.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/4.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/5.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/5.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/6.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/6.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/7.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/7.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/8.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/8.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/9.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/9.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/10.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/10.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/11.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/11.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/12.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/12.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/13.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/13.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/14.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/14.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/14.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/14.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/15.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/15.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/16.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/16.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/17.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/17.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/18.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/18.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/19.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/19.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/20.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/20.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/21.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/21.jpg" alt="foto-alvaro-rosson">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/22.jpg"><img src="/galleryImages/Festival-de-Teatro-Alvaro-de-Rosson-Adicora/22.jpg" alt="foto-alvaro-rosson">
-        </a>
+        {
+            images.map(image => {
+                return <a data-fslightbox="lightbox" href={image.default}><img src={image.default} alt="imagen-encuentro-liceistas"></a>
+            })
+        }
     </div>
 </GalleryLayout>                
 
