@@ -1,7 +1,7 @@
 ---
 import GalleryLayout from "../../../components/galleryLayout.astro";
 
-const images = await Astro.glob("/public/galleryImages/Ferias-del-Libro/*.jpg")
+const images = await Astro.glob("/public/galleryImages/Ferias-del-Libro/*.{jpg, jpeg, JPG, JPEG}") 
 ---
 <GalleryLayout title="Ferias del Libro">
     <p>
