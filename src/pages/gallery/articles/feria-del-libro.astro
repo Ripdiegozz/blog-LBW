@@ -1,5 +1,7 @@
 ---
 import GalleryLayout from "../../../components/galleryLayout.astro";
+
+const images = await Astro.glob("/public/galleryImages/Ferias-del-Libro/*.jpg")
 ---
 <GalleryLayout title="Ferias del Libro">
     <p>
@@ -9,34 +11,11 @@ import GalleryLayout from "../../../components/galleryLayout.astro";
 
     <h2 class="text-center text-4xl p-8">Galería</h2>
     <div class="flex flex-wrap gap-3 pictures__box justify-center">
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/3.jpg"><img src="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/3.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/4.jpg"><img src="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/4.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/I-Feria-del-Libro/1.jpg"><img src="/galleryImages/Ferias-del-Libro/I-Feria-del-Libro/1.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/I-Feria-del-Libro/2.JPG"><img src="/galleryImages/Ferias-del-Libro/I-Feria-del-Libro/2.JPG" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/1.jpg"><img src="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/1.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/2.jpg"><img src="/galleryImages/Ferias-del-Libro/III-Feria-del-Libro/2.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/1.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/1.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/2.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/2.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/3.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/3.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/4.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/4.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/5.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/5.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/6.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/6.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/7.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/7.jpg" alt="foto-feria-libro">
-        </a>
-        <a data-fslightbox="lightbox" href="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/8.jpg"><img src="/galleryImages/Ferias-del-Libro/IV-Feria-del-Libro/8.jpg" alt="foto-feria-libro">
-        </a>
+        {
+            images.map(image => {
+                return <a data-fslightbox="lightbox" href={image.default}><img src={image.default} alt="imagen-encuentro-liceistas"></a>
+            })
+        }
     </div>
 </GalleryLayout>                
 
