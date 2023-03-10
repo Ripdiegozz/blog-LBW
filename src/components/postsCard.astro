@@ -9,16 +9,11 @@ const {imageURL = "", imageALT = "", bookURL=  ""} = Astro.props
 
 ---
 
-<a href={bookURL} target="_blank" class="blog-card transition-all duration-300">
+<a href={bookURL} target="_blank" class="blog-card transition-all duration-300 w-[17%] min-[320px]:max-[1023px]:w-[45%]">
     <img src={imageURL} alt={imageALT}>
 </a>
 
 <style>
-
-    .blog-card{
-        width: 17%;
-    }
-
     .blog-card:hover, .blog-card:active{
         transform: translateY(2%);
         box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);

@@ -1,14 +1,13 @@
 ---
 interface Props{
     cardTitle: string;
-    cardDate?: string;
     cardLink: string;
 }
 
-const {cardTitle = 'Titulo por defecto', cardDate = "Sin fecha especificada.", cardLink = "#"} = Astro.props;
+const {cardTitle = 'Titulo por defecto', cardLink = "#"} = Astro.props;
 ---
 
-<div class="blog-card flex flex-col">
+<div class="blog-card flex flex-col w-[30%] h-[200px] m-[15px] bg-white text-center items-center justify-center p-[15px] border-[1px] min-[320px]:max-[1023px]:w-[80%]">
     <h2 class="card-text font-serif font-normal">{cardTitle}</h2>
     <a href={cardLink} class="read-more">Entrar</a>
 </div>
@@ -16,15 +15,7 @@ const {cardTitle = 'Titulo por defecto', cardDate = "Sin fecha especificada.", c
 <style>
 
     .blog-card{
-        width: 30%;
-        height: 200px;
-        margin:15px;
-        background:#fff;
-        border:1px solid #812626;
-        text-align:center;
-        align-items: center;
-        justify-content: center;
-        padding: 15px;
+        border-color: #812626;
     }
 
     .blog-card a{
