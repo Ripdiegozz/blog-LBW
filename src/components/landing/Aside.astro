@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import { SITE_TITLE } from "../../consts";
+import Logo from "@/assets/logo.jpeg";
+---
+
+<aside class="width-[25%]">
+    <h2>
+        <a href="/" class="text-3xl">
+        <Image src={Logo} alt={SITE_TITLE} class="w-64 h-96" />
+        </a>
+    </h2>
+</aside>
