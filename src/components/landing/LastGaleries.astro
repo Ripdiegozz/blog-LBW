@@ -1,0 +1,22 @@
+---
+import Entry from "@/components/BlogEntry.astro";
+---
+
+<!-- Last Entries -->
+<section class="pb-8">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-4xl font-bold">Últimas Galerias</h2>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row items-center flex-wrap gap-4 justify-between py-4">
+      <Entry />
+      <Entry />
+      <Entry />
+      <div class="hidden md:block 2xl:hidden">
+        <Entry />
+      </div>
+    </div>
+  </div>
+</section>

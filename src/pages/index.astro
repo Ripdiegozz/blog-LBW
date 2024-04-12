@@ -1,26 +1,43 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Aside from '../components/landing/Aside.astro'
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Aside from "@/components/landing/Aside.astro";
+import Footer from "@/components/Footer.astro";
+import MainEntry from "@/components/landing/MainEntry.astro";
+import LastEntries from "@/components/landing/LastEntries.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import LastGaleries from "@/components/landing/LastGaleries.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
 ---
 
 <!doctype html>
-<html lang="es">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<div class="flex">
-			<Aside />
-			<div>
-				<Header />
-				<main class="w-[80%]">
-					<h1>🧑‍🚀 Hello, Astronaut!</h1>
-				</main>
-			</div>
-		</div>
-		<Footer />
-	</body>
+<html lang="es" data-theme="autumn">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="flex py-4 w-full">
+      <Aside />
+      <div class="w-full lg:w-[80%]">
+        <Header />
+        <MobileHeader />
+        <main class="w-full pt-10">
+          <MainEntry
+            title="El título de la entrada"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas."
+            pubDate={new Date("August 08 2021")}
+            heroImage="/blog-placeholder-about.jpg"
+            author={{
+              name: "Juan Pérez",
+              avatar: "/avatar.jpg",
+            }}
+          />
+          <LastEntries />
+          <LastGaleries />
+        </main>
+      </div>
+    </div>
+    <Footer />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js" integrity="sha512-2VqLVM3WCyaqUgQb2hpoWHSus021RIN0Jq0wfrLqqLh+anm1kW/H4Yw7HVu3D5W4nbdUQmAA2mqQv2JEoy+kPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </body>
 </html>

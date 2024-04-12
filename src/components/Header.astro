@@ -1,23 +1,125 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import { Image } from 'astro:assets';
-import { Input } from "@/components/ui/input";
-import { SITE_TITLE } from "../consts";
-import Logo from "@/assets/logo.jpeg";
+import SuggestionItem from "./SuggestionItem.astro";
+interface suggestionItem {
+  title: string;
+  description: string;
+  imageSrc: string;
+  slug: string;
+}
+const items: suggestionItem[] = [
+  {
+    title: "Astro",
+    description: "Astro is a new kind of static site builder that delivers lightning-fast performance with a modern developer experience.",
+    imageSrc: "https://astro.build/img/logo.svg",
+    slug: "/astro",
+  },
+  {
+    title: "Snowpack",
+    description: "Snowpack is a lightning-fast frontend build tool, designed for the modern web.",
+    imageSrc: "https://snowpack.dev/img/logo.png",
+    slug: "/snowpack",
+  },
+  {
+    title: "Preact",
+    description: "Preact is a fast 3kB alternative to React with the same modern API.",
+    imageSrc: "https://preactjs.com/img/logo.svg",
+    slug: "/preact",
+  },
+  {
+    title: "TypeScript",
+    description: "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
+    imageSrc: "https://www.typescriptlang.org/assets/images/icons/apple-touch-icon.png",
+    slug: "/typescript",
+  },
+  {
+    title: "Tailwind CSS",
+    description: "Tailwind CSS is a utility-first CSS framework for rapid UI development.",
+    imageSrc: "https://tailwindcss.com/favicon-32x32.png",
+    slug: "/tailwind",
+  },
+  {
+    title: "Vite",
+    description: "Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects.",
+    imageSrc: "https://vitejs.dev/logo.svg",
+    slug: "/vite",
+  },
+  {
+    title: "ESBuild",
+    description: "ESBuild is an extremely fast JavaScript bundler and minifier.",
+    imageSrc: "https://esbuild.github.io/favicon.svg",
+    slug: "/esbuild",
+  },
+  {
+    title: "Deno",
+    description: "Deno is a simple, modern, and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
+    imageSrc: "https://deno.land/logo.svg",
+    slug: "/deno",
+  },
+  {
+    title: "Svelte",
+    description: "Svelte is a radical new approach to building user interfaces with a compiler that converts your components into efficient JavaScript.",
+    imageSrc: "https://svelte.dev/favicon.png",
+    slug: "/svelte",
+  }
+];
 ---
 
-<header class="flex items-start">
+<header class="items-start hidden lg:flex">
+
   <nav class="w-full flex gap-10">
-    <div class="w-[80%] flex flex-col items-center justify-center">
-      <div class="flex gap-4 items-center justify-end py-8 mr-4 w-full">
-        <div class="w-96">
-          <Input
-            type="search"
-            placeholder="Buscar en el sitio"
-            aria-label="Buscar en el sitio"
-          />         
+    <div class="w-[100%] flex flex-col items-center justify-center">
+      <div class="flex gap-4 items-center justify-end py-4 mr-10 w-full">
+        <h2 class="!text-3xl font-bold text-left">
+          Fundaleon
+        </h2>
+        <div class="w-96 mr-10 relative">
+          <label class="input input-md input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              id="autoComplete"
+              type="search"
+              dir="ltr"
+              spellcheck="false"
+              autocorrect="off"
+              autocomplete="off"
+              autocapitalize="off"
+              maxlength="2048"
+              tabindex="1"
+              class="grow"
+              placeholder="Buscar en la página"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="w-7 h-7 opacity-70"
+              ><path
+                fill="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clip="evenodd"></path></svg
+            >
+          </label>
+          <ul
+            id="searchResults"
+            style="display: none;"
+            class="absolute top-14 left-0 w-96 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 max-h-[500px] overflow-y-auto"
+          >
+            <!-- search results go here -->
+            <!-- Test search results -->
+            {
+              items.map((heading) => (
+                <SuggestionItem
+                  title={heading.title}
+                  description={heading.description}
+                  imageSrc={heading.imageSrc}
+                  slug={heading.slug}
+                />
+              ))
+            }
+          </ul>
         </div>
-        <div class="social-links mr-4">
+        <div class="social-links mr-4 gap-6">
           <a href="https://twitter.com/astrodotbuild" target="_blank">
             <span class="sr-only">Sigue a Fundaleon en X</span>
             <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
@@ -38,7 +140,7 @@ import Logo from "@/assets/logo.jpeg";
           </a>
         </div>
       </div>
-      <div class="internal-links flex w-full justify-around">
+      <div class="internal-links flex flex-wrap w-full justify-around">
         <HeaderLink href="/">Inicio</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
         <HeaderLink href="/historial">Historial</HeaderLink>
@@ -50,6 +152,59 @@ import Logo from "@/assets/logo.jpeg";
     </div>
   </nav>
 </header>
+
+<script>
+  // vanilla js automcomplete with no libraries
+  const autoCompleteInput = document.getElementById("autoComplete");
+  const allHeadings = Array.from(document.querySelectorAll(".suggestedResult"));
+  const searchResults = document.getElementById("searchResults") as HTMLElement;
+
+  autoCompleteInput?.addEventListener("input", (e: any) => {
+    const query = e.target.value.toLowerCase();
+    const results = allHeadings.filter((heading) => {
+      return heading.textContent?.toLowerCase().includes(query);
+    });
+
+    searchResults.innerHTML = "";
+
+    // If results are 0 show a message
+    if (results.length === 0) {
+      searchResults.style.display = "block";
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="#" class="font-bold text-lg p-2">No se encontraron resultados</a>`;
+      searchResults?.appendChild(li);
+    }
+
+    results.forEach((result) => {
+      searchResults.style.display = "block";
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="#" class="font-bold text-lg p-2">${result.innerHTML}</a>`;
+      searchResults?.appendChild(li);
+    });
+  });
+
+  // close search results when clicking outside
+  document.addEventListener("click", (e) => {
+    if (e.target !== autoCompleteInput) {
+      searchResults.innerHTML = "";
+      searchResults.style.display = "none";
+    }
+  });
+
+  // close search results when pressing escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      searchResults.innerHTML = "";
+      searchResults.style.display = "none";
+    }
+  });
+
+  // close search results when clicking on a result
+  searchResults.addEventListener("click", (e) => {
+    searchResults.innerHTML = "";
+    searchResults.style.display = "none";
+  });
+</script>
 
 <style>
   header {
@@ -73,8 +228,7 @@ import Logo from "@/assets/logo.jpeg";
     justify-content: space-between;
   }
   nav a {
-    padding: 1em 0.5em;
-    color: var(--black);
+    padding: 0.5em 0.5em;
     border-bottom: 4px solid transparent;
     text-decoration: none;
   }
@@ -86,6 +240,7 @@ import Logo from "@/assets/logo.jpeg";
   .social-links a {
     display: flex;
   }
+
   @media (max-width: 720px) {
     .social-links {
       display: none;

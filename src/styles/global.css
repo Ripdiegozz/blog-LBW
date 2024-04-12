@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/*Debug rule*/
+/*
+* {
+  outline: 1px solid red;
+}
+*/
+
 @font-face {
   font-family: "Caudex";
   src: url("/fonts/Caudex-Regular.ttf") format("truetype");
@@ -98,6 +105,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -112,7 +120,10 @@ h6 {
   font-family: 'Cormorant', serif;
 }
 
-p {
+p,
+span,
+a,
+time {
   font-family: 'Caudex', serif;
 }
 

@@ -1,0 +1,19 @@
+---
+const { title, description, imageSrc, slug } = Astro.props;
+---
+
+<li class="suggestedResult p-2">
+  <a
+    href=`#${slug}`
+    class="font-bold text-lg flex p-2 w-full hover:bg-slate-100 transition-colors rounded-lg"
+  >
+    <div class="flex flex-col h-full">
+      <h2 class="!text-xl font-bold mt-2">{title}</h2>
+      <p class="text-sm">
+        {description}
+      </p>
+      <span class="text-sm underline justify-self-end pt-4"> Leer más </span>
+    </div>
+    <img src={imageSrc} alt="Test image" class="w-44 h-44" />
+  </a>
+</li>

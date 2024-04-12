@@ -1,13 +1,97 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import { SITE_TITLE } from "../../consts";
 import Logo from "@/assets/logo.jpeg";
+import AsideEntry from "./AsideEntry.astro";
 ---
 
-<aside class="width-[25%]">
-    <h2>
-        <a href="/" class="text-3xl">
-        <Image src={Logo} alt={SITE_TITLE} class="w-64 h-96" />
-        </a>
-    </h2>
+<aside class="w-[20%] min-h-screen p-4 hidden lg:block">
+  <!-- Foundation Logo -->
+  <h2 class="w-full">
+    <a href="/" class="text-3xl w-full">
+      <Image src={Logo} alt={SITE_TITLE} class="w-[100%] h-96 object-cover" />
+    </a>
+  </h2>
+
+  <!-- leon face and book -->
+  <section class="mt-10 flex flex-col gap-6">
+    <div class="LBW__section--box flex flex-col">
+      <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg"
+        ><img
+          src="/blog-placeholder-about.jpg"
+          alt="foto-LBW"
+          class="face rounded-lg"
+        /></a
+      >
+      <h3 class="font-bold text-2xl">León Bienvenido Wefer</h3>
+      <p class="mb-[35px]">1885 - 1917</p>
+    </div>
+    <div class="LBW__section--box flex flex-col">
+      <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg"
+        ><img
+          src="/blog-placeholder-about.jpg"
+          class="rounded-lg"
+          alt="foto-Peregrinaciones"
+        /></a
+      >
+      <h3 class="font-bold text-2xl">“Peregrinaciones”</h3>
+      <p>Primera Edición, 1905</p>
+      <p class="mb-[35px]">Segunda Edición Ampliada, 2006</p>
+    </div>
+    <div class="LBW__section--box flex flex-col">
+      <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg">
+        <img
+          src="/blog-placeholder-about.jpg"
+          class="rounded-lg"
+          alt="foto-Marta"
+        />
+      </a>
+      <h3 class="font-bold text-2xl">"Marta"</h3>
+      <p></p>
+    </div>
+  </section>
+
+  <!-- Featured blog entries -->
+  <section class="mt-10">
+    <h3 class="text-2xl font-extrabold">Destacados</h3>
+    <ul class="mt-2">
+      <AsideEntry />
+      <AsideEntry />
+    </ul>
+  </section>
 </aside>
+
+<style>
+  /* Aside section */
+
+  .LBW__section {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    border: 1px solid #812626;
+  }
+
+  .LBW__section--box {
+    align-items: center;
+  }
+
+  .LBW__section--box a img {
+    width: 100%;
+    height: 350px;
+  }
+
+  .LBW__section--box h3 {
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: rgb(0, 0, 0);
+  }
+
+  .LBW__section--box p {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 0;
+  }
+</style>
