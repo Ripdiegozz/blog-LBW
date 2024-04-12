@@ -1,0 +1,37 @@
+---
+import GalleryLayout from "../../../components/galleryLayout.astro";
+const images = await Astro.glob("/public/galleryImages/Charlas/*.jpg")
+---
+<GalleryLayout title="Charlas">
+    <p>
+        [Content]
+    </p>
+
+    <h2 class="text-center text-4xl p-8">Galería</h2>
+    <div class="flex flex-wrap gap-3 pictures__box justify-center">
+        {
+            images.map(image => {
+                return <a data-fslightbox="lightbox" href={image.default}><img src={image.default} alt="foto-charlas"></a>
+            })
+        }
+    </div>
+</GalleryLayout>                
+
+<style>
+    .pictures__box a {
+        display: flex;
+        justify-content: center;
+        width: 30%;
+        border: 1px solid #812626;
+    }
+
+    .pictures__box a img{
+        max-height: 200px;
+        width: 100%;
+    }
+</style>
+
+
+
+               
+                    

@@ -1,0 +1,24 @@
+{
+  "name": "blog-fundaleon",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.3.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.6.0",
+    "scrollreveal": "^4.0.9",
+    "tailwindcss": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^5.4.5"
+  }
+}

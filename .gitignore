@@ -7,7 +7,7 @@ dist/
 node_modules/
 
 # old
-backup/
+#backup/
 
 # logs
 npm-debug.log*

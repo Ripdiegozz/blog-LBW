@@ -1,0 +1,19 @@
+---
+import Layout from "../../components/Layout.astro";
+import Card from "../../components/card.astro";
+
+const articles = await Astro.glob("./articles/*.md")
+console.log(articles)
+---
+
+<Layout customTitle="Publicaciones">
+
+{
+	articles.map(posts => {
+		return <Card cardLink={posts.url} cardTitle={posts.frontmatter.title} cardDate={posts.frontmatter.date} cardAuthor={posts.frontmatter.author}>
+			</Card>
+	})
+}
+
+
+</Layout>

@@ -1,0 +1,18 @@
+---
+import CARD from "../../components/postsCard.astro";
+import Layout from "../../components/Layout.astro";
+
+const books = await fetch("https://json-serv-fundaleon.vercel.app/books")
+const image = await books.json()
+---
+
+<Layout customTitle="Publicaciones - LBW">
+    <div class="text-4xl text-center p-8"><h2>Publicaciones</h2></div>
+    <div class="main__entries flex flex-wrap justify-center gap-y-[3rem] gap-x-[7rem]">
+        {
+            image.map(books => {
+                return <CARD bookURL={books.bookURL} imageALT={books.name} imageURL={books.image}></CARD>
+            })
+        }
+    </div>
+</Layout>

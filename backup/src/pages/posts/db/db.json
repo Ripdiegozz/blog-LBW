@@ -1,0 +1,53 @@
+{
+    "books": [
+        {
+            "id": "1",
+            "name": "Peregrinaciones",
+            "author": "León B. Weffer",
+            "image": "/postsImages/books/1.jpg",
+            "bookURL": "/postsImages/books/1.jpg"
+        },
+        {
+            "id": "2",
+            "name": "Tengo mi Paraguaná",
+            "author": "Juan Nepomucano Rodríguez - Ciro Alvarado",
+            "image": "/postsImages/books/2.jpg",
+            "bookURL": "/postsImages/books/2.jpg"
+        },
+        {
+            "id": "3",
+            "name": "Crónicas del exilio",
+            "author": "Luislis Morales Galindo",
+            "image": "/postsImages/books/3.jpg",
+            "bookURL": "/postsImages/books/3.jpg"
+        },
+        {
+            "id": "4",
+            "name": "Cronista de la tierra parguanera",
+            "author": "Juan de la Cruz Esteves",
+            "image": "/postsImages/books/4.jpg",
+            "bookURL": "/postsImages/books/4.jpg"
+        },
+        {
+            "id": "5",
+            "name": "La luz puntual que nos alumbra",
+            "author": "Alí Brett Martínez",
+            "image": "/postsImages/books/5.jpg",
+            "bookURL": "/postsImages/books/5.jpg"
+        },
+        {
+            "id": "6",
+            "name": "El año del hambre",
+            "author": "María Victoria Padilla",
+            "image": "/postsImages/books/6.jpg",
+            "bookURL": "/postsImages/books/6.jpg"
+        },
+        {
+            "id": "7",
+            "name": "Influencia de Aruba en la dinámica histórica de Paraguaná",
+            "author": "David Chacón Torres - Pablo Moreno Urbina",
+            "image": "/postsImages/books/7.jpg",
+            "bookURL": "/postsImages/books/7.jpg"
+        }
+    ]
+}
