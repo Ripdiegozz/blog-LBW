@@ -1,5 +1,5 @@
 ---
-import Entry from "@/components/BlogEntry.astro";
+import Entry from "@/components/landing/BlogEntry.astro";
 ---
 
 <!-- Last Entries -->
@@ -11,11 +11,31 @@ import Entry from "@/components/BlogEntry.astro";
       </div>
     </div>
     <div class="flex flex-col md:flex-row items-center flex-wrap gap-4 justify-around py-4">
-      <Entry />
-      <Entry />
-      <Entry />
-      <div class="hidden md:block 2xl:hidden">
-        <Entry />
+      <Entry
+        author="Rafael"
+        title="Como criar um blog com Astro"
+        description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
+        imageSrc="/blog-placeholder-about.jpg"
+      />
+      <Entry 
+        author="Rafael"
+        title="Como criar um blog com Astro"
+        description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
+        imageSrc="/blog-placeholder-about.jpg"
+      />
+      <Entry 
+        author="Rafael"
+        title="Como criar um blog com Astro"
+        description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
+        imageSrc="/blog-placeholder-about.jpg"
+      />
+      <div class="hidden md:block xl:hidden">
+        <Entry 
+          author="Rafael"
+          title="Como criar um blog com Astro"
+          description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
+          imageSrc="/blog-placeholder-about.jpg"
+        />
       </div>
     </div>
   </div>

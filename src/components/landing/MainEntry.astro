@@ -12,29 +12,19 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
     <main class="grid gap-10 lg:gap-20">
         <div class="space-y-4 px-8">
           <h2 class="text-4xl font-extrabold tracking-tight lg:text-5xl">{title}</h2>
-          <p class="text-gray-500 dark:text-gray-400">
-            Por: {author.name}
-          </p>
-          <p class="text-gray-500 dark:text-gray-400">
-            Publicado: <FormattedDate date={pubDate} />
-          </p>
           <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg">
             <img
               alt="Cover Image"
-              class="mx-auto mt-8 rounded-lg object-cover"
-              height={500}
+              class="mx-auto mt-8 rounded-lg object-cover aspect-[1200/900] lg:aspect-[1200/500]"
               src="/blog-placeholder-about.jpg"
-              style={{
-                aspectRatio: "1200/500",
-                objectFit: "cover",
-              }}
               width={1200}
+              height={500}
             />
           </a>
           <p class="text-xl py-4 leading-7 text-gray-600 dark:text-gray-400">
             {description}
           </p>
-          <a class="font-semibold underline text-xl py-4" href="#">
+          <a class="font-semibold hover:underline text-xl py-4" href="#">
             Leer la publicación completa
           </a>
         </div>

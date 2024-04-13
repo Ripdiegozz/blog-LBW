@@ -1,24 +1,24 @@
 ---
-import { Image } from "astro:assets";
-import { SITE_TITLE } from "../../consts";
-import Logo from "@/assets/logo.jpeg";
 import AsideEntry from "./AsideEntry.astro";
+import FotoLbw from "@/assets/landing/foto-lbw.jpg";
+import PeregrinacionesPortada from "@/assets/landing/peregrinaciones-portada.jpg";
+import MartaPortada from "@/assets/landing/marta-portada.jpg";
 ---
 
-<aside class="w-[20%] min-h-screen p-4 hidden lg:block">
-  <!-- Foundation Logo -->
-  <h2 class="w-full">
-    <a href="/" class="text-3xl w-full">
-      <Image src={Logo} alt={SITE_TITLE} class="w-[100%] h-96 object-cover" />
-    </a>
+<aside class="w-[22%] min-h-screen pl-4 py-4 hidden lg:block">
+  <!-- Foundation Logo - Only show if the path is "/" -->
+  <h2 class="xl:text-7xl lg:text-6xl text-wrap break-words pl-2">
+    FUNDA
+    <br>
+    <span class="text-red-800">LEÓN</span>
   </h2>
 
   <!-- leon face and book -->
   <section class="mt-10 flex flex-col gap-6">
     <div class="LBW__section--box flex flex-col">
-      <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg"
+      <a data-fslightbox="lightbox" href={FotoLbw.src}
         ><img
-          src="/blog-placeholder-about.jpg"
+          src={FotoLbw.src}
           alt="foto-LBW"
           class="face rounded-lg"
         /></a
@@ -27,9 +27,9 @@ import AsideEntry from "./AsideEntry.astro";
       <p class="mb-[35px]">1885 - 1917</p>
     </div>
     <div class="LBW__section--box flex flex-col">
-      <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg"
+      <a data-fslightbox="lightbox" href={PeregrinacionesPortada.src}
         ><img
-          src="/blog-placeholder-about.jpg"
+          src={PeregrinacionesPortada.src}
           class="rounded-lg"
           alt="foto-Peregrinaciones"
         /></a
@@ -39,9 +39,9 @@ import AsideEntry from "./AsideEntry.astro";
       <p class="mb-[35px]">Segunda Edición Ampliada, 2006</p>
     </div>
     <div class="LBW__section--box flex flex-col">
-      <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg">
+      <a data-fslightbox="lightbox" href={MartaPortada.src}>
         <img
-          src="/blog-placeholder-about.jpg"
+          src={MartaPortada.src}
           class="rounded-lg"
           alt="foto-Marta"
         />
@@ -74,7 +74,7 @@ import AsideEntry from "./AsideEntry.astro";
   }
 
   .LBW__section--box a img {
-    width: 100%;
+    width: 250px;
     height: 350px;
   }
 
