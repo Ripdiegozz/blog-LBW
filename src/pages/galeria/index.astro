@@ -1,37 +1,144 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import MobileHeader from '@/components/MobileHeader.astro';
-import PageLayout from '@/layouts/PageLayout.astro';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
 ---
 
-<PageLayout 
-	title="Historial Fundaleón"
-	desciption="Historial de la Fundación Literaria León Bienvenido Weffer"
+<PageLayout
+  title="Historial Fundaleón"
+  desciption="Historial de la Fundación Literaria León Bienvenido Weffer"
 >
   <Header />
   <MobileHeader />
   <main>
-	<section class="container mx-auto px-4 py-8">
-	  <h1 class="text-4xl font-bold text-center mb-8">Historial Fundaleón</h1>
-	  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-		<!--
-		@foreach (getCollection("historial", { order: "desc" }) as $entry)
-		  <li class="border border-gray-200 p-4 rounded-lg">
-			<h2 class="text-xl font-bold">{{ $entry.title }}</h2>
-			<p class="text-gray-600 text-sm mb-2">
-			  <FormattedDate date="{{ $entry.date }}" />
-			</p>
-			<p>{{ $entry.description }}</p>
-		  </li>
-		@endforeach
-		-->
-	  </ul>
-	</section>
+    <div class="space-y-4">
+      <div class="grid items-center grid-cols-1 sm:grid-cols-2 gap-4">
+        <h1 class="text-3xl font-bold">Gallery Entries</h1>
+        <div class="flex items-center space-x-2 text-sm sm:space-x-4">
+          <p class="text-gray-500 dark:text-gray-400">View</p>
+          <select
+            class="w-20 border-gray-200 dark:border-gray-800"
+          >
+            <option value="ten">10</option>
+            <option value="twenty">20</option>
+            <option value="thirty">30</option>
+          </select>
+          <p class="text-gray-500 dark:text-gray-400">entries per page</p>
+          <button class="ml-auto sm:ml-0">
+            New Entry
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div
+          class="border border-gray-200 rounded-lg overflow-hidden dark:border-gray-800"
+        >
+          <a class="block" href="#">
+            <img
+              alt="Thumbnail"
+              class="aspect-[4/3] object-cover w-full"
+              height={300}
+              src="/placeholder.svg"
+              width={400}
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-lg leading-none">
+                Beautiful Sunset
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                A stunning view of the sun setting over the ocean.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="border border-gray-200 rounded-lg overflow-hidden dark:border-gray-800"
+        >
+          <a class="block" href="#">
+            <img
+              alt="Thumbnail"
+              class="aspect-[4/3] object-cover w-full"
+              height={300}
+              src="/placeholder.svg"
+              width={400}
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-lg leading-none">
+                Enchanting Forest
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                A magical woodland with dappled sunlight filtering through the
+                trees.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="border border-gray-200 rounded-lg overflow-hidden dark:border-gray-800"
+        >
+          <a class="block" href="#">
+            <img
+              alt="Thumbnail"
+              class="aspect-[4/3] object-cover w-full"
+              height={300}
+              src="/placeholder.svg"
+              width={400}
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-lg leading-none">
+                Urban Exploration
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                Discovering hidden gems in the heart of the city.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="border border-gray-200 rounded-lg overflow-hidden dark:border-gray-800"
+        >
+          <a class="block" href="#">
+            <img
+              alt="Thumbnail"
+              class="aspect-[4/3] object-cover w-full"
+              height={300}
+              src="/placeholder.svg"
+              width={400}
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-lg leading-none">
+                Serene Landscapes
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                Rolling hills and peaceful meadows under a vast open sky.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between w-full max-w-sm mx-auto"
+      >
+        <div class="flex items-center space-x-2 text-sm">
+          <button>
+            <span class="sr-only">Previous</span>
+          </button>
+          <button>
+            <span class="sr-only">Next</span>
+          </button>
+        </div>
+        <select class="min-w-[80px] text-sm">
+          <option value="ten">10</option>
+          <option value="twenty">20</option>
+          <option value="thirty">30</option>
+        </select>
+      </div>
+    </div>
   </main>
   <Footer />
 </PageLayout>
