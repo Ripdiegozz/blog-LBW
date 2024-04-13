@@ -2,25 +2,25 @@
 import Layout from "../components/Layout.astro";
 import asideFace from "../images/lbw-images/face.jpg"
 import asideMarta from "../images/lbw-images/2.jpg"
-import asidePeregrinaciones from "/postsImages/books/1.jpg"
+import asidePeregrinaciones from "../../public/postsImages/books/1.jpg"
 ---
 
 <Layout>
 	<div class="container flex justify-center pt-10 w-[100%] mx-auto min-[320px]:max-md:flex-col min-[320px]:max-md:w-[95%]">
 		<aside class="LBW__section h-[25%] w-[30%] mx-auto m-[15px] p-[20px] min-[320px]:max-md:w-full min-[320px]:max-md:h-full">
 					<div class="LBW__section--box flex flex-col">
-						<a data-fslightbox="lightbox" href={asideFace}><img src={asideFace} alt="foto-LBW" class="face"></a>
+						<a data-fslightbox="lightbox" href={asideFace.src}><img src={asideFace.src} alt="foto-LBW" class="face"></a>
 						<h3>León Bienvenido Wefer</h3>
 						<p class="mb-[35px]">1885 - 1917</p>
 					</div>
 					<div class="LBW__section--box flex flex-col">
-						<a data-fslightbox="lightbox" href={asidePeregrinaciones}><img src={asidePeregrinaciones} alt="foto-Peregrinaciones"></a>
+						<a data-fslightbox="lightbox" href={asidePeregrinaciones.src}><img src={asidePeregrinaciones.src} alt="foto-Peregrinaciones"></a>
 						<h3>“Peregrinaciones”</h3>
 						<p>Primera Edición, 1905</p>
 						<p class="mb-[35px]">Segunda Edición Ampliada, 2006</p>
 					</div>
 					<div class="LBW__section--box flex flex-col">
-						<a data-fslightbox="lightbox" href={asideMarta}><img src={asideMarta} alt="foto-Marta"></a>
+						<a data-fslightbox="lightbox" href={asideMarta.src}><img src={asideMarta.src} alt="foto-Marta"></a>
 						<h3>"Marta"</h3>
 						<p></p>
 					</div>
