@@ -40,12 +40,3 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
         </div>
       </main>
 </article>
-
-<script>
-  // @ts-ignore
-  import * as fs from "fslightbox";
-
-  fs.fsLightboxInstances["lightbox"].props.onOpen = function () {
-	  console.log("The first lightbox has opened.");
-  };
-</script>
