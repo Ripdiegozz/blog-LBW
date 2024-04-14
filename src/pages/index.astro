@@ -1,36 +1,49 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+import fetchApi from "lib/strapi";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import type { Post } from "interfaces/post";
+
 import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import Aside from "@/components/landing/Aside.astro";
 import Footer from "@/components/Footer.astro";
 import MainEntry from "@/components/landing/MainEntry.astro";
 import LastEntries from "@/components/landing/LastEntries.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import LastGaleries from "@/components/landing/LastGaleries.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
+
+const posts = await fetchApi<Post[]>({
+  endpoint: "/posts",
+  wrappedByKey: "data",
+});
+
+const mainPost = posts[0];
+
+console.log(mainPost.attributes.cover.data.attributes.url);
 ---
 
 <!doctype html>
 <html lang="es" data-theme="autumn">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ViewTransitions />
   </head>
   <body>
-    <div class="flex py-4 w-full">
+    <div class="flex py-4 w-full pb-8 pt-20 lg:pt-4">
       <Aside />
       <div class="w-full lg:w-[80%]">
         <Header />
         <MobileHeader />
-        <main class="w-full pt-10">
+        <main class="w-full lg:pt-8">
           <MainEntry
-            title="El título de la entrada"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas."
-            pubDate={new Date("August 08 2021")}
-            heroImage="/blog-placeholder-about.jpg"
-            author={{
-              name: "Juan Pérez",
-              avatar: "/avatar.jpg",
-            }}
+            title={mainPost.attributes.title}
+            description={mainPost.attributes.description}
+            slug={mainPost.attributes.slug}
+            pubDate={new Date(mainPost.attributes.publishedAt)}
+            imageSrc={mainPost.attributes.cover.data.attributes.url}
+            imageAlt={mainPost.attributes.cover.data.attributes.alternativeText}
+            author={mainPost.attributes.author.data.attributes.name}
           />
           <LastEntries />
           <LastGaleries />
@@ -38,6 +51,10 @@ import MobileHeader from "@/components/MobileHeader.astro";
       </div>
     </div>
     <Footer />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js" integrity="sha512-2VqLVM3WCyaqUgQb2hpoWHSus021RIN0Jq0wfrLqqLh+anm1kW/H4Yw7HVu3D5W4nbdUQmAA2mqQv2JEoy+kPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js"
+      integrity="sha512-2VqLVM3WCyaqUgQb2hpoWHSus021RIN0Jq0wfrLqqLh+anm1kW/H4Yw7HVu3D5W4nbdUQmAA2mqQv2JEoy+kPA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
   </body>
 </html>

@@ -1,80 +1,101 @@
 ---
+import { cn } from "@/lib/utils";
 import HeaderLink from "./HeaderLink.astro";
 import SuggestionItem from "./SuggestionItem.astro";
+
 interface suggestionItem {
   title: string;
   description: string;
   imageSrc: string;
   slug: string;
 }
+
 const items: suggestionItem[] = [
   {
     title: "Astro",
-    description: "Astro is a new kind of static site builder that delivers lightning-fast performance with a modern developer experience.",
+    description:
+      "Astro is a new kind of static site builder that delivers lightning-fast performance with a modern developer experience.",
     imageSrc: "https://astro.build/img/logo.svg",
     slug: "/astro",
   },
   {
     title: "Snowpack",
-    description: "Snowpack is a lightning-fast frontend build tool, designed for the modern web.",
+    description:
+      "Snowpack is a lightning-fast frontend build tool, designed for the modern web.",
     imageSrc: "https://snowpack.dev/img/logo.png",
     slug: "/snowpack",
   },
   {
     title: "Preact",
-    description: "Preact is a fast 3kB alternative to React with the same modern API.",
+    description:
+      "Preact is a fast 3kB alternative to React with the same modern API.",
     imageSrc: "https://preactjs.com/img/logo.svg",
     slug: "/preact",
   },
   {
     title: "TypeScript",
-    description: "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
-    imageSrc: "https://www.typescriptlang.org/assets/images/icons/apple-touch-icon.png",
+    description:
+      "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
+    imageSrc:
+      "https://www.typescriptlang.org/assets/images/icons/apple-touch-icon.png",
     slug: "/typescript",
   },
   {
     title: "Tailwind CSS",
-    description: "Tailwind CSS is a utility-first CSS framework for rapid UI development.",
+    description:
+      "Tailwind CSS is a utility-first CSS framework for rapid UI development.",
     imageSrc: "https://tailwindcss.com/favicon-32x32.png",
     slug: "/tailwind",
   },
   {
     title: "Vite",
-    description: "Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects.",
+    description:
+      "Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects.",
     imageSrc: "https://vitejs.dev/logo.svg",
     slug: "/vite",
   },
   {
     title: "ESBuild",
-    description: "ESBuild is an extremely fast JavaScript bundler and minifier.",
+    description:
+      "ESBuild is an extremely fast JavaScript bundler and minifier.",
     imageSrc: "https://esbuild.github.io/favicon.svg",
     slug: "/esbuild",
   },
   {
     title: "Deno",
-    description: "Deno is a simple, modern, and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
+    description:
+      "Deno is a simple, modern, and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
     imageSrc: "https://deno.land/logo.svg",
     slug: "/deno",
   },
   {
     title: "Svelte",
-    description: "Svelte is a radical new approach to building user interfaces with a compiler that converts your components into efficient JavaScript.",
+    description:
+      "Svelte is a radical new approach to building user interfaces with a compiler that converts your components into efficient JavaScript.",
     imageSrc: "https://svelte.dev/favicon.png",
     slug: "/svelte",
-  }
+  },
 ];
 ---
 
-<header class="items-start hidden lg:flex border-b">
-  <nav class="w-full flex gap-10">
+<header class="items-start hidden lg:flex border-b w-full">
+  <nav class="w-full flex gap-10 container">
     <div class="w-[100%] flex flex-col items-center justify-center">
-      <div id="headerInputContainer" class="flex gap-4 items-center justify-between py-4 mr-10 w-full">
-        <h2 id="logo" class="hidden !text-4xl pl-9 font-bold text-left justify-self-start">
+      <div
+        id="headerInputContainer"
+        class="flex gap-4 items-center justify-between py-4 mr-10 w-full"
+      >
+        <h2
+          id="logo"
+          class="block !text-4xl pl-9 font-bold text-left justify-self-start"
+        >
           Fundaleón
         </h2>
         <section class="flex">
           <div class="w-96 mr-10 relative">
-            <label class="input input-md input-bordered flex items-center gap-2">
+            <label
+              class="input input-md input-bordered flex items-center gap-2"
+            >
               <input
                 type="text"
                 id="autoComplete"
@@ -131,9 +152,18 @@ const items: suggestionItem[] = [
             </a>
             <a href="https://github.com/withastro/astro" target="_blank">
               <span class="sr-only">Sigue a Fundaleón en Facebook</span>
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 50 50">
-                <path d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"></path>
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="36"
+                height="36"
+                viewBox="0 0 50 50"
+              >
+                <path
+                  d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"
+                ></path>
+              </svg>
             </a>
           </div>
         </section>
@@ -141,16 +171,17 @@ const items: suggestionItem[] = [
       <div class="internal-links flex flex-wrap w-full justify-around">
         <HeaderLink href="/">Inicio</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
-        <HeaderLink href="/historial">Historial</HeaderLink>
-        <HeaderLink href="/galeria">Galeria</HeaderLink>
+        <HeaderLink href="#">Historial</HeaderLink>
+        <HeaderLink href="/galeria">
+          Galería
+        </HeaderLink>
         <HeaderLink href="/biblioteca">Biblioteca</HeaderLink>
+        <HeaderLink href="#">Sobre Nosotros</HeaderLink>
         <HeaderLink href="/contacto">Contacto</HeaderLink>
-        <HeaderLink href="/nosotros">Sobre Nosotros</HeaderLink>
       </div>
     </div>
   </nav>
 </header>
-
 
 <script>
   // vanilla js automcomplete with no libraries
@@ -203,19 +234,6 @@ const items: suggestionItem[] = [
     searchResults.innerHTML = "";
     searchResults.style.display = "none";
   });
-
-  // get pathname
-  const path = window.location.pathname;
-
-  if (path === "/") {
-    document.querySelector("#logo")?.classList.add("hidden");
-    document.querySelector("#headerInputContainer")?.classList.remove("justify-between");
-    document.querySelector("#headerInputContainer")?.classList.add("justify-end");
-  } else {
-    document.querySelector("#logo")?.classList.remove("hidden");
-    document.querySelector("#headerInputContainer")?.classList.remove("justify-end");
-    document.querySelector("#headerInputContainer")?.classList.add("justify-between");
-  }
 </script>
 
 <style>

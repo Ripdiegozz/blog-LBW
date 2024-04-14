@@ -1,10 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@/components/FormattedDate.astro";
+import { environment } from "@/environments/enviroment.develop";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage, author } = Astro.props;
+const { title, description, pubDate, updatedDate, imageSrc, imageAlt, author, slug } = Astro.props;
 
 ---
 
@@ -12,11 +13,18 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
     <main class="grid gap-10 lg:gap-20">
         <div class="space-y-4 px-8">
           <h2 class="text-4xl font-extrabold tracking-tight lg:text-5xl">{title}</h2>
-          <a data-fslightbox="lightbox" href="/blog-placeholder-about.jpg">
+          <div class="flex items-center space-x-4 mt-0">
+            <p class="text-gray-600 dark:text-gray-400">
+              <FormattedDate date={pubDate} />
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">•</p>
+            <p class="text-gray-600 dark:text-gray-400">{author}</p>
+          </div>
+          <a data-fslightbox="lightbox" href={`${environment.imagesUrl}${imageSrc}`}>
             <img
               alt="Cover Image"
               class="mx-auto mt-8 rounded-lg object-cover aspect-[1200/900] lg:aspect-[1200/500]"
-              src="/blog-placeholder-about.jpg"
+              src={`${environment.imagesUrl}${imageSrc}`}
               width={1200}
               height={500}
             />
@@ -24,8 +32,8 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
           <p class="text-xl py-4 leading-7 text-gray-600 dark:text-gray-400">
             {description}
           </p>
-          <a class="font-semibold hover:underline text-xl py-4" href="#">
-            Leer la publicación completa
+          <a class="font-semibold hover:underline text-xl py-4" href=`/blog/post/${slug}`>
+            Leer la nota completa
           </a>
         </div>
       </main>

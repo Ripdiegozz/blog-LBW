@@ -1,5 +1,15 @@
 ---
 import Entry from "@/components/landing/BlogEntry.astro";
+import { cn } from "@/lib/utils";
+import type { Post } from "interfaces/post";
+import fetchApi from "lib/strapi";
+
+const posts = await fetchApi<Post[]>({
+  endpoint: "/posts",
+  wrappedByKey: "data",
+});
+
+console.log(posts);
 ---
 
 <!-- Last Entries -->
@@ -10,32 +20,55 @@ import Entry from "@/components/landing/BlogEntry.astro";
         <h2 class="text-4xl font-bold">Últimos Posts</h2>
       </div>
     </div>
-    <div class="flex flex-col md:flex-row items-center flex-wrap gap-4 justify-around py-4">
-      <Entry
-        author="Rafael"
-        title="Como criar um blog com Astro"
-        description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
-        imageSrc="/blog-placeholder-about.jpg"
-      />
-      <Entry 
-        author="Rafael"
-        title="Como criar um blog com Astro"
-        description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
-        imageSrc="/blog-placeholder-about.jpg"
-      />
-      <Entry 
-        author="Rafael"
-        title="Como criar um blog com Astro"
-        description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
-        imageSrc="/blog-placeholder-about.jpg"
-      />
+    <div
+      class={cn(
+        "flex flex-col md:flex-row items-center flex-wrap gap-4 justify-around py-4",
+        {
+          "justify-start": posts.length < 3,
+        }
+      )}
+    >
+      {
+        // Render just 3 posts here if exists
+        posts.length > 0 && posts.length > 3 ? (
+          posts
+            .slice(0, 3)
+            .map((post) => (
+              <Entry
+                author={post.attributes.author.data.attributes.name}
+                title={post.attributes.title}
+                slug={post.attributes.slug}
+                description={post.attributes.description}
+                imageSrc={post.attributes.cover.data.attributes.url}
+              />
+            ))
+        ) : posts.length > 0 ? (
+          posts.map((post) => (
+            <Entry
+              author={post.attributes.author.data.attributes.name}
+              title={post.attributes.title}
+              slug={post.attributes.slug}
+              description={post.attributes.description}
+              imageSrc={post.attributes.cover.data.attributes.url}
+            />
+          ))
+        ) : (
+          <p>Ningun post encontrado</p>
+        )
+      }
       <div class="hidden md:block xl:hidden">
-        <Entry 
-          author="Rafael"
-          title="Como criar um blog com Astro"
-          description="Aprenda a criar um blog com Astro, um novo framework para construção de sites estáticos."
-          imageSrc="/blog-placeholder-about.jpg"
-        />
+        {
+          // Render the 4th post if exists
+          posts.length > 3 && (
+            <Entry
+              author={posts[3].attributes.author.data.attributes.name}
+              title={posts[3].attributes.title}
+              slug={posts[3].attributes.slug}
+              description={posts[3].attributes.description}
+              imageSrc={posts[3].attributes.cover.data.attributes.url}
+            />
+          )
+        }
       </div>
     </div>
   </div>

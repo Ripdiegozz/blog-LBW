@@ -1,147 +1,49 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 import Pagination from "@/components/blog/Pagination.astro";
 import BlogEntry from "@/components/blog/BlogEntry.astro";
+import fetchApi from "lib/strapi";
+import type { Post } from "interfaces/post";
 
-interface Post {
-  title: string;
-  date: Date;
-  description: string;
-  images: Array<{
-    src: string;
-    alt: string;
-  }> | string
-}
+const posts = await fetchApi<Post[]>({
+  endpoint: "posts",
+  wrappedByKey: "data",
+  query: {
+    _sort: "date:desc",
+    _limit: "9",
+  },
+});
 
-const posts: Post[] = [
-  {
-    title: "The Power of Words: A Journey into the World of Literature",
-    date: new Date(),
-    description:
-      "The written word has the power to transport us to far-off lands, introduce us to fascinating characters, and spark our imagination. Join us on a journey into the world of literature as we explore the timeless tales, thought-provoking poetry, and captivating stories that have...",
-    images: [
-      {
-        src: "/blog-placeholder-1.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-1.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-1.jpg",
-        alt: "Placeholder image",
-      }
-    ],
-  },
-  {
-    title: "Exploring the Wonders of the Natural World",
-    date: new Date(),
-    description:
-      "From the depths of the ocean to the peaks of the highest mountains, the natural world is full of wonders waiting to be discovered. Join us as we explore the beauty and majesty of nature, from the smallest insects to the largest mammals, and everything in between...",
-      images: [
-      {
-        src: "/blog-placeholder-2.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-2.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-2.jpg",
-        alt: "Placeholder image",
-      }
-    ],
-  },
-  {
-    title: "The Art of Giving: How Small Acts of Kindness Can Change the World",
-    date: new Date(),
-    description:
-      "In a world that can often seem dark and divided, small acts of kindness can be a beacon of light that shines through the darkness. Join us as we explore the art of giving, from simple acts of charity to grand gestures of generosity, and discover how even the smallest...",
-      images: [
-      {
-        src: "/blog-placeholder-4.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-4.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-4.jpg",
-        alt: "Placeholder image",
-      }
-    ],
-  },
-  {
-    title: "The Power of Music: A Journey into the World of Sound",
-    date: new Date(),
-    description:
-      "Music has the power to move us, inspire us, and bring us together in ways that words alone cannot. Join us on a journey into the world of sound as we explore the beauty and diversity of music from around the globe, from classical symphonies to modern pop hits, and everything...",
-      images: [
-      {
-        src: "/blog-placeholder-3.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-3.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-3.jpg",
-        alt: "Placeholder image",
-      }
-    ],
-  },
-  {
-    title: "The Magic of the Movies: A Journey into the World of Film",
-    date: new Date(),
-    description:
-      "Music has the power to move us, inspire us, and bring us together in ways that words alone cannot. Join us on a journey into the world of sound as we explore the beauty and diversity of music from around the globe, from classical symphonies to modern pop hits, and everything...",
-      images: [
-      {
-        src: "/blog-placeholder-5.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-5.jpg",
-        alt: "Placeholder image",
-      },
-      {
-        src: "/blog-placeholder-5.jpg",
-        alt: "Placeholder image",
-      }
-    ],
-  },
-]
+console.log(posts);
 ---
 
 <PageLayout title="Blog Fundaleon" description="Blog posts by the author">
   <Header />
   <MobileHeader />
-  <div class="pb-8 pt-20 lg:pt-14  container mx-auto">
+  <div class="pb-8 pt-20 lg:pt-14 container mx-auto">
     <div>
-      <h2 class="text-4xl font-bold">
-        Blog Fundaleón
-      </h2>
+      <h2 class="text-4xl font-bold">Blog Fundaleón</h2>
       <p class="py-4 text-lg max-w-3xl">
-        Bienvenido al blog de la Fundación, aquí encontrarás información sobre nuestros proyectos, eventos y noticias. Si
-        deseas colaborar con nosotros, no dudes en ponerte en contacto.
+        Bienvenido al blog de la Fundación, aquí encontrarás información sobre
+        nuestros proyectos, eventos y noticias. Si deseas colaborar con
+        nosotros, no dudes en ponerte en contacto.
       </p>
     </div>
 
-    <section class="grid gap-10 lg:grid-cols-2 xl:grid-cols-3 container mx-auto py-8">
-      {posts.map((post) => (
-        <BlogEntry title={post.title} pubDate={post.date} description={post.description} images={post.images} />
-      ))}
+    <section class="grid gap-10 lg:grid-cols-2 xl:grid-cols-3 mx-auto py-8">
+      {
+        posts.map((post) => (
+          <BlogEntry
+            title={post.attributes.title}
+            pubDate={post.attributes.publishedAt}
+            description={post.attributes.description}
+            cover={post.attributes.cover.data.attributes}
+            slug={post.attributes.slug}
+          />
+        ))
+      }
     </section>
 
     <Pagination />

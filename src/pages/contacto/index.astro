@@ -1,37 +1,67 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import MobileHeader from '@/components/MobileHeader.astro';
-import PageLayout from '@/layouts/PageLayout.astro';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
 ---
 
 <PageLayout
-	title="Historial Fundaleón"
-	desciption="Historial de la Fundación Literaria León Bienvenido Weffer"
+  title="Contacta con nosotros"
+  desciption="Historial de la Fundación Literaria León Bienvenido Weffer"
 >
   <Header />
   <MobileHeader />
-  <main>
-	<section class="container mx-auto px-4 py-8">
-	  <h1 class="text-4xl font-bold text-center mb-8">Historial Fundaleón</h1>
-	  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-		<!--
-		@foreach (getCollection("historial", { order: "desc" }) as $entry)
-		  <li class="border border-gray-200 p-4 rounded-lg">
-			<h2 class="text-xl font-bold">{{ $entry.title }}</h2>
-			<p class="text-gray-600 text-sm mb-2">
-			  <FormattedDate date="{{ $entry.date }}" />
-			</p>
-			<p>{{ $entry.description }}</p>
-		  </li>
-		@endforeach
-		-->
-	  </ul>
-	</section>
-  </main>
+  <section class="pb-8 pt-20 lg:pt-14 space-y-4 container mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8">Contacta con nosotros</h1>
+    <div class="container grid max-w-2xl gap-4 px-0 md:px-6 pb-12 md:pb-24">
+      <div class="space-y-2">
+        <p class="text-gray-500 dark:text-gray-400 text-lg">
+          Si quieres contactarte con nosotros, puedes hacerlo a través de este
+          formulario.
+          <br />
+          Te responderemos lo más pronto posible.
+        </p>
+      </div>
+      <form action="POST" class="space-y-4">
+        <div class="flex flex-col md:grid md:grid-cols-2 gap-4">
+          <div class="space-y-2 flex flex-col w-full">
+            <label for="first-name">Primer Nombre</label>
+            <input
+              class="input"
+              id="first-name"
+              placeholder="Ingresa tu nombre"
+            />
+          </div>
+          <div class="space-y-2 flex flex-col w-full">
+            <label for="last-name">Primer Apellido</label>
+            <input
+              class="input"
+              id="last-name"
+              placeholder="Ingresa tu apellido"
+            />
+          </div>
+        </div>
+        <div class="space-y-2 flex flex-col w-full">
+          <label for="email"> Correo Electrónico </label>
+          <input
+            class="input"
+            id="email"
+            placeholder="Ingresa tu correo electrónico"
+            type="email"
+          />
+        </div>
+        <div class="space-y-2 flex flex-col w-full">
+          <label for="message">Mensaje</label>
+          <textarea
+            class="input textarea-bordered min-h-[140px] resize-none p-2"
+            id="message"
+            placeholder="Ingresa tu mensaje"></textarea>
+        </div>
+        <button class="btn btn-md btn-primary text-white font-bold"
+          >Enviar mensaje</button
+        >
+      </form>
+    </div>
+  </section>
   <Footer />
 </PageLayout>

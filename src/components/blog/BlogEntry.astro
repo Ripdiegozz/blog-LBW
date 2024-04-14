@@ -1,36 +1,43 @@
 ---
 import FormattedDate from "../FormattedDate.astro";
-
-const { title, pubDate, description, images } = Astro.props;
+import { environment } from "@/environments/enviroment.develop";
+const { title, pubDate, description, cover, slug } = Astro.props;
 
 console.log({
   title,
   pubDate,
   description,
-  images,
+  cover,
 });
 ---
 
-<div class="space-y-2 hover:bg-red-50 transition-colors p-4 rounded-lg">
+<div
+  class="group space-y-2 hover:bg-rose-50/45 transition-colors p-6 rounded-lg border"
+>
   <a class="font-medium" href="#">
-    <h2 class="text-2xl font-bold tracking-tight min-h-[64px]">
+    <h2 class="text-2xl font-bold tracking-tight">
       {title}
     </h2>
   </a>
   <p class="text-gray-500 dark:text-gray-400">
-    <FormattedDate date={pubDate} />
+    <FormattedDate date={new Date(pubDate)} />
   </p>
-  <p class="min-h-[144px] max-h-[144px]">
+  <p class="min-h-[100px]">
     {description}
   </p>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 py-4">
-    {
-      images.map((image: { src: string; alt: string }) => (
-        <a data-fslightbox="fslightbox" href={image.src}>
-          <img src={image.src} alt={image.alt} class="rounded-lg" />
-        </a>
-      ))
-    }
+  <div class="w-full py-6">
+    <a
+      data-fslightbox="fslightbox"
+      href={`${environment.imagesUrl}${cover.url}`}
+    >
+      <img
+        src={`${environment.imagesUrl}${cover.url}`}
+        alt={cover.alternativeText}
+        class="rounded-lg w-full h-auto mx-auto"
+      />
+    </a>
   </div>
-  <a href="#" class="hover:underline transition text-lg"> Leer más </a>
+  <a href={`/blog/post/${slug}`} class="hover:underline transition text-lg group-hover:underline">
+    Leer más
+  </a>
 </div>

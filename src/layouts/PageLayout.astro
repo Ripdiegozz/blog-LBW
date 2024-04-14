@@ -1,5 +1,6 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
+import { ViewTransitions } from "astro:transitions";
 
 const { title, description } = Astro.props;
 ---
@@ -7,6 +8,7 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="es" data-theme="autumn">
   <head>
+    <ViewTransitions />
     <BaseHead title={title} description={description} />
   </head>
   <body>

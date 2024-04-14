@@ -1,16 +1,18 @@
 ---
-const { author, title, description, imageSrc } = Astro.props;
+import { environment } from "@/environments/enviroment.develop";
+
+const { author, title, description, imageSrc, slug } = Astro.props;
 ---
 
-<a href="#" class="group relative block bg-black w-60 lg:w-80 xl:w-92 h-96">
+<a href={`blog/post/${slug}`} class="group relative block bg-black w-60 lg:w-80 xl:w-92 h-96">
   <img
     alt={title}
-    src={imageSrc}
-    class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+    src={`${environment.imagesUrl}${imageSrc}`}
+    class="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity group-hover:opacity-35"
   />
 
   <div class="relative p-4 sm:p-6 lg:p-8">
-    <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
+    <p class="text-sm font-bold uppercase tracking-widest text-red-400">
       {author}
     </p>
 

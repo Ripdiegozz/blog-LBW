@@ -1,37 +1,56 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import MobileHeader from '@/components/MobileHeader.astro';
-import PageLayout from '@/layouts/PageLayout.astro';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+import LibraryEntry from "@/components/library/LibraryEntry.astro";
 ---
 
-<PageLayout 
-	title="Historial Fundaleón"
-	desciption="Historial de la Fundación Literaria León Bienvenido Weffer"
+<PageLayout
+  title="Historial Fundaleón"
+  desciption="Historial de la Fundación Literaria León Bienvenido Weffer"
 >
   <Header />
   <MobileHeader />
-  <main>
-	<section class="container mx-auto px-4 py-8">
-	  <h1 class="text-4xl font-bold text-center mb-8">Historial Fundaleón</h1>
-	  <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-		<!--
-		@foreach (getCollection("historial", { order: "desc" }) as $entry)
-		  <li class="border border-gray-200 p-4 rounded-lg">
-			<h2 class="text-xl font-bold">{{ $entry.title }}</h2>
-			<p class="text-gray-600 text-sm mb-2">
-			  <FormattedDate date="{{ $entry.date }}" />
-			</p>
-			<p>{{ $entry.description }}</p>
-		  </li>
-		@endforeach
-		-->
-	  </ul>
-	</section>
-  </main>
+  <div class="pb-8 pt-20 lg:pt-14 space-y-4 container mx-auto">
+    <div>
+      <h1 class="text-4xl font-bold">Colección Biblio-Hemerográfica</h1>
+      <p class="py-4 text-lg max-w-3xl">
+        Bienvenido a la colección biblio-hemerográfica de la Fundación Literaria
+		León Bienvenido Weffer. Aquí encontrarás una selección de libros y
+		revistas que forman parte de la historia de la fundación.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <LibraryEntry
+		title=`Colección "Fundación León Bienvenido Weffer"`
+		pubDate={new Date("2021-09-01")}
+	  />
+	  <LibraryEntry
+		title=`Colección "Raúl López Lilo"`
+		pubDate={new Date("2021-09-01")}
+	  />
+	  <LibraryEntry
+		title=`Colección "Molina - Toledo"`
+		pubDate={new Date("2021-09-01")}
+	  />
+	  <LibraryEntry
+		title=`Colección "Leoncio López"`
+		pubDate={new Date("2021-09-01")}
+	  />
+	  <LibraryEntry
+		title=`Colección "Olga Expósito"`
+		pubDate={new Date("2021-09-01")}
+	  />
+	  <LibraryEntry
+		title=`Colección "Isaac López"`
+		pubDate={new Date("2021-09-01")}
+	  />
+	  <LibraryEntry
+		title=`Colección "Beaujon Hidalgo"`
+		pubDate={new Date("2021-09-01")}
+	  />
+    </div>
+  </div>
   <Footer />
 </PageLayout>
