@@ -1,12 +1,19 @@
 ---
 import type { GetStaticPaths } from "astro";
 import fetchApi from "lib/strapi";
+import {
+  TwitterIcon,
+  FacebookIcon,
+  InstagramIcon,
+  LinkIcon,
+} from "lucide-react";
+import { Button } from "../../../components/ui/button";
 import type { Post } from "interfaces/post";
 import PageLayout from "@/layouts/PageLayout.astro";
 import Header from "@/components/Header.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
-import TextRendererComponent from "@/components/blog/post/TextRendererComponent";
+import TextRendererComponent from "@/components/TextRendererComponent";
 import { environment } from "@/environments/enviroment.develop";
 
 export const getStaticPaths = (async () => {
@@ -36,38 +43,63 @@ const post = await fetchApi<Post>({
 <PageLayout title="Blog Fundaleon" description="Blog posts by the author">
   <Header />
   <MobileHeader />
-  <div class="pb-8 pt-16 lg:pt-0 container mx-auto">
+  <div class="pb-8 pt-16 lg:pt-0 px-4 container mx-auto">
     <div class="py-6 md:px-6 md:py-10 lg:py-12">
-      <article class="prose prose-gray mx-auto max-w-6xl dark:prose-invert">
+      <article class="prose prose-gray mx-auto max-w-lg lg:max-w-4xl dark:prose-invert">
         <header>
-          <div class="space-y-2 not-prose md:pl-6">
-            <h2
-              class="text-4xl font-extrabold tracking-tight lg:text-5xl lg:leading-[3.5rem]"
-            >
-              {post.attributes.title}
-            </h2>
-            <p class="text-gray-500 dark:text-gray-400">
-              Publicado el: <FormattedDate
-                date={new Date(post.attributes.publishedAt)}
-              />
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 pb-8">
-              Autor: {post.attributes.author.data.attributes.name}
-            </p>
+          <div class="flex flex-col md:flex-row justify-between flex-wrap max-w-xl lg:max-w-6xl">
+            <div class="break-words w-full md:max-w-xl">
+              <h2 class="text-4xl font-extrabold tracking-tight lg:text-5xl break-words">
+                {post.attributes.title}
+              </h2>
+              <div class="flex flex-col md:flex-row gap-2 items-center pt-4">
+                <span>Publicado el:</span>
+                <FormattedDate date={new Date(post.attributes.publishedAt)} />
+              </div>
+              <p class="pt-2 text-center md:text-left">Por: {post.attributes.author.data.attributes.name}</p>
+            </div>
+            <div class="flex flex-col mx-auto items-center md:mx-0 md:justify-end space-x-4 py-2">
+              <span class="text-sm font-semibold text-gray-500">
+                Compartir:
+              </span>
+              <div class="flex gap-2">
+                <Button variant="outline">
+                  <TwitterIcon size="16" />
+                  <span class="sr-only">Twitter</span>
+                </Button>
+                <Button variant="outline">
+                  <FacebookIcon size="16" />
+                  <span class="sr-only">Facebook</span>
+                </Button>
+                <Button variant="outline">
+                  <InstagramIcon size="16" />
+                  <span class="sr-only">LinkedIn</span>
+                </Button>
+                <Button variant="outline">
+                  <LinkIcon size="16" />
+                  <span class="sr-only">Copy link</span>
+                </Button>
+              </div>
+            </div>
           </div>
-          <p class="text-lg pb-8 md:pl-6">
+          <p class="text-lg pb-8 pt-10">
             {post.attributes.description}
           </p>
           <img
             alt={post.attributes.cover.data.attributes.alternativeText}
-            class="aspect-video overflow-hidden rounded-lg object-fill mx-auto h-auto w-full md:h-[500px] md:w-[1100px]"
+            class="aspect-video overflow-hidden rounded-lg object-fill mx-auto h-auto w-full md:h-[500px] md:w-[1000px]"
             src={`${environment.imagesUrl}${post.attributes.cover.data.attributes.url}`}
           />
         </header>
         <body class="mx-auto">
           <div class="prose dark:prose-invert">
-            <div class="pb-10 pt-2 w-full flex flex-col items-center justify-center">
-              <TextRendererComponent content={post.attributes.text} quotePosition="right"/>
+            <div
+              class="pb-10 pt-6 w-full flex flex-col items-center justify-center break-words"
+            >
+              <TextRendererComponent
+                content={post.attributes.text}
+                quotePosition="right"
+              />
             </div>
           </div>
         </body>
@@ -75,3 +107,4 @@ const post = await fetchApi<Post>({
     </div>
   </div>
 </PageLayout>
+@/components/TextRendererComponent

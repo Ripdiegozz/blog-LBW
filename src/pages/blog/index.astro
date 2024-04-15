@@ -2,19 +2,25 @@
 import Header from "../../components/Header.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-import Pagination from "@/components/blog/Pagination.astro";
 import BlogEntry from "@/components/blog/BlogEntry.astro";
 import fetchApi from "lib/strapi";
 import type { Post } from "interfaces/post";
+import Paginator from "@/components/Paginator.astro";
 
-const posts = await fetchApi<Post[]>({
-  endpoint: "posts",
-  wrappedByKey: "data",
-  query: {
-    _sort: "date:desc",
-    _limit: "9",
-  },
+// Get the current page from the query string
+console.log(Astro.site);
+
+const currentPage = 1
+console.log(currentPage);
+
+const res = await fetchApi<any>({
+  endpoint: `posts?pagination[page]=${currentPage}&pagination[pageSize]=9`,
 });
+
+const totalPages: number = res.meta.pagination.pageCount;
+const totalResults: number = res.meta.pagination.total;
+// @ts-ignore
+const posts: Post[] = res.data;
 
 console.log(posts);
 ---
@@ -32,7 +38,7 @@ console.log(posts);
       </p>
     </div>
 
-    <section class="grid gap-10 lg:grid-cols-2 xl:grid-cols-3 mx-auto py-8">
+    <section class="flex flex-wrap gap-10 md:gap-4 lg:gap-10 lg:grid lg:grid-cols-2 xl:grid-cols-3 mx-auto py-8">
       {
         posts.map((post) => (
           <BlogEntry
@@ -45,7 +51,6 @@ console.log(posts);
         ))
       }
     </section>
-
-    <Pagination />
+    <Paginator totalPages={totalPages} totalResults={totalResults} currentPage={currentPage} />
   </div>
 </PageLayout>

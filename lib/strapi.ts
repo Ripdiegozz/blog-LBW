@@ -1,3 +1,5 @@
+import { slide } from "astro/virtual-modules/transitions.js";
+
 interface Props {
   endpoint: string;
   query?: Record<string, string>;
@@ -15,7 +17,6 @@ interface Props {
  */
 export default async function fetchApi<T>({
   endpoint,
-  query,
   wrappedByKey,
   wrappedByList,
 }: Props): Promise<T> {
@@ -32,18 +33,11 @@ export default async function fetchApi<T>({
     url = new URL(`${import.meta.env.STRAPI_URL}/api/${endpoint}&populate=*`);
   }
 
-  if (query) {
-    Object.entries(query).forEach(([key, value]) => {
-      url.searchParams.append(key, value);
-    });
-  }
-
   const res = await fetch(url.toString(), {
     headers: {
       Authorization: `Bearer ${import.meta.env.STRAPI_JWT}`,
     },
   });
-
   let data = await res.json();
 
   if (wrappedByKey) {

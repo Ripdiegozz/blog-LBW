@@ -1,13 +1,21 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-import GalleryEntry from "@/components/galery/GalleryEntry.astro";
+import GalleryEntry from "@/components/gallery/GalleryEntry.astro";
+import fetchApi from "lib/strapi";
+import type { Gallery } from "interfaces/gallery";
+
+const galleries = await fetchApi<Gallery[]>({
+  endpoint: "galleries",
+  wrappedByKey: "data",
+  query: {
+    _sort: "date:desc",
+  },
+});
+
+console.log(galleries);
 ---
 
 <PageLayout
@@ -25,78 +33,23 @@ import GalleryEntry from "@/components/galery/GalleryEntry.astro";
       </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
-      <GalleryEntry
-        title="Título de la imagen"
-        description="Descripción de la imagen"
-        image={
-          {src: "/blog-placeholder-1.jpg",
-          alt: "Descripción de la imagen"}
-        }
-      />
+      {
+        galleries.map((gallery) => {
+          const randomImage = gallery.attributes.images.data[Math.floor(Math.random() *  gallery.attributes.images.data.length)];
+
+          return (
+          <GalleryEntry
+            title={gallery.attributes.title}
+            description={gallery.attributes.description}
+            slug={gallery.attributes.slug}
+            image={{
+              src: randomImage.attributes.url,
+              alt: randomImage.attributes.alternativeText,
+            }}
+          />
+        )
+        })
+      }
     </div>
   </div>
   <Footer />

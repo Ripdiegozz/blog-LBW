@@ -1,0 +1,28 @@
+---
+import { environment } from "@/environments/enviroment.develop";
+
+const { image, title, description, slug } = Astro.props;
+---
+
+<div
+  class="border border-gray-200 hover:bg-rose-50/45 transition rounded-lg overflow-hidden dark:border-gray-800"
+>
+  <a class="block group" href={`/galeria/post/${slug}`}>
+    <img
+      alt={image.alt}
+      class="aspect-[4/3] object-cover w-full"
+      height={300}
+      src={`${environment.imagesUrl}${image.src}`}
+      width={400}
+    />
+    <div class="p-4">
+      <h3 class="font-semibold text-xl leading-none py-4">{title}</h3>
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        {description}
+      </p>
+    </div>
+    <p class="text-sm group-hover:underline p-4 pt-0">
+        Ver más
+    </p>
+  </a>
+</div>

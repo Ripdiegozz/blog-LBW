@@ -19,8 +19,6 @@ const posts = await fetchApi<Post[]>({
 });
 
 const mainPost = posts[0];
-
-console.log(mainPost.attributes.cover.data.attributes.url);
 ---
 
 <!doctype html>
@@ -51,10 +49,13 @@ console.log(mainPost.attributes.cover.data.attributes.url);
       </div>
     </div>
     <Footer />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js"
-      integrity="sha512-2VqLVM3WCyaqUgQb2hpoWHSus021RIN0Jq0wfrLqqLh+anm1kW/H4Yw7HVu3D5W4nbdUQmAA2mqQv2JEoy+kPA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"></script>
+    <script>
+      // @ts-ignore
+      import * as fs from "fslightbox";
+
+      fs.fsLightboxInstances["fslightbox"].props.onOpen = function () {
+        console.log("The first lightbox has opened.");
+      };
+    </script>
   </body>
 </html>

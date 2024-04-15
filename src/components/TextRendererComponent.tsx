@@ -13,13 +13,13 @@ const TextRendererComponent = ({ content, quotePosition} : TextRendererProps) =>
       blocks={{
         // You can use the default components to set class names...
         paragraph: ({ children }) => (
-          <p className="text-neutral-900 max-w-3xl">{children}</p>
+          <p className="text-neutral-900 w-full md:max-w-4xl">{children}</p>
         ),
         image: ({ image }) => (
           <div className="py-8">
             <a data-fslightbox="fslightbox" href={image.url}>
               <img
-              className="w-full h-56 md:h-80 lg:max-w-3xl lg:h-auto py-3 object-cover rounded-lg"
+              className="w-full h-56 md:h-80 lg:max-w-4xl lg:h-auto py-3 object-cover rounded-lg"
               src={image.url}
               alt={image.alternativeText || ""}
               />
@@ -47,7 +47,7 @@ const TextRendererComponent = ({ content, quotePosition} : TextRendererProps) =>
                 quotePosition === "right" && "ml-auto",
                 quotePosition === "center" && "mx-auto"
               )}>
-                {splitText.map((text, index) => (
+                {splitText.map((text: string, index: number) => (
                   <span key={index}>
                     {text}
                     {index !== splitText.length - 1 && <br />}
@@ -72,17 +72,17 @@ const TextRendererComponent = ({ content, quotePosition} : TextRendererProps) =>
         heading: ({ children, level }) => {
           switch (level) {
             case 1:
-              return <h1 className="text-3xl font-bold">{children}</h1>;
+              return <h1 className="text-4xl font-bold py-2 pb-4">{children}</h1>;
             case 2:
-              return <h2 className="text-2xl font-bold">{children}</h2>;
+              return <h2 className="text-3xl font-bold py-2 pb-4">{children}</h2>;
             case 3:
-              return <h3 className="text-xl font-bold">{children}</h3>;
+              return <h3 className="text-2xl font-bold py-2 pb-4">{children}</h3>;
             case 4:
-              return <h4 className="text-lg font-bold">{children}</h4>;
+              return <h4 className="text-xl font-bold py-2 pb-4">{children}</h4>;
             case 5:
-              return <h5 className="text-base font-bold">{children}</h5>;
+              return <h5 className="text-lg font-bold py-2 pb-4">{children}</h5>;
             case 6:
-              return <h6 className="text-sm font-bold">{children}</h6>;
+              return <h6 className="text-md font-bold py-2 pb-4">{children}</h6>;
             default:
               return <p>{children}</p>;
           }
