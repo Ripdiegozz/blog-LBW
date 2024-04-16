@@ -5,7 +5,7 @@ const { title, pubDate, description, cover, slug } = Astro.props;
 ---
 
 <a
-  class="group space-y-2 hover:bg-rose-50/45 transition-colors p-4 rounded-lg border block max-w-[250px] md:p-6 md:max-w-xs lg:max-w-md mx-auto w-full"
+  class="group space-y-2 hover:bg-rose-50/45 transition-colors p-4 rounded-lg border block max-w-[320px] md:p-6 md:max-w-xs lg:max-w-md mx-auto w-full"
   href={`/blog/post/${slug}`}
 >
   <h2 class="text-2xl font-bold tracking-tight break-words">
@@ -14,7 +14,7 @@ const { title, pubDate, description, cover, slug } = Astro.props;
   <p class="text-gray-500 dark:text-gray-400">
     <FormattedDate date={new Date(pubDate)} />
   </p>
-  <p class="">
+  <p class="break-words">
     {description}
   </p>
   <div class="w-full py-6">
@@ -24,7 +24,7 @@ const { title, pubDate, description, cover, slug } = Astro.props;
       class="rounded-lg w-full h-auto mx-auto border border-slate-400/75"
     />
   </div>
-  <span class="hover:underline transition text-lg group-hover:underline">
-    Leer más
-  </span>
+  <p class="text-md font-bold text-white btn btn-secondary group-hover:underline ml-4 p-4">
+    Ver más
+</p>
 </a>

@@ -9,10 +9,10 @@ const { title, description, pubDate, updatedDate, imageSrc, imageAlt, author, sl
 
 ---
 
-<article>
+<article class="w-full mx-auto">
     <main class="grid gap-10 lg:gap-20">
-        <div class="space-y-4 px-8">
-          <h2 class="text-4xl font-extrabold tracking-tight lg:text-5xl">{title}</h2>
+        <div class="space-y-4 px-8 max-w-xs mx-auto md:max-w-2xl lg:max-w-6xl">
+          <h2 class="text-4xl font-extrabold tracking-tight lg:text-5xl break-words">{title}</h2>
           <div class="flex items-center space-x-4 mt-0">
             <p class="text-gray-600 dark:text-gray-400">
               <FormattedDate date={pubDate} />
@@ -23,13 +23,11 @@ const { title, description, pubDate, updatedDate, imageSrc, imageAlt, author, sl
           <a data-fslightbox="lightbox" href={`${environment.imagesUrl}${imageSrc}`}>
             <img
               alt="Cover Image"
-              class="mx-auto mt-8 rounded-lg object-cover aspect-[1200/900] lg:aspect-[1200/500]"
-              src={`${environment.imagesUrl}${imageSrc}`}
-              width={1200}
-              height={500}
+              class="mx-auto mt-8 rounded-lg object-cover w-full aspect-[1200/900] lg:aspect-[1200/500]"
+[]              src={`${environment.imagesUrl}${imageSrc}`}
             />
           </a>
-          <p class="text-xl py-4 leading-7 text-gray-600 dark:text-gray-400">
+          <p class="text-xl py-4 leading-7 text-gray-600 dark:text-gray-400 break-words">
             {description}
           </p>
           <a class="font-semibold hover:underline text-xl py-4" href=`/blog/post/${slug}`>

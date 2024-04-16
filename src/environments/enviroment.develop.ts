@@ -1,3 +1,3 @@
 export const environment = {
-    imagesUrl: 'https://f520-52-247-70-139.ngrok-free.app',
+    imagesUrl: 'https://e036-20-36-163-19.ngrok-free.app',
 };

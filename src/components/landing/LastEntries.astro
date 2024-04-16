@@ -35,21 +35,21 @@ console.log(posts);
             .slice(0, 3)
             .map((post) => (
               <Entry
-                author={post.attributes.author.data.attributes.name}
                 title={post.attributes.title}
-                slug={post.attributes.slug}
                 description={post.attributes.description}
+                pubDate={new Date(post.attributes.publishedAt)}
+                slug={post.attributes.slug}
                 imageSrc={post.attributes.cover.data.attributes.url}
               />
             ))
         ) : posts.length > 0 ? (
           posts.map((post) => (
             <Entry
-              author={post.attributes.author.data.attributes.name}
               title={post.attributes.title}
-              slug={post.attributes.slug}
               description={post.attributes.description}
-              imageSrc={post.attributes.cover.data.attributes.url}
+              pubDate={new Date(post.attributes.publishedAt)}
+              slug={post.attributes.slug}
+              cover={post.attributes.cover.data.attributes}
             />
           ))
         ) : (
@@ -61,11 +61,11 @@ console.log(posts);
           // Render the 4th post if exists
           posts.length > 3 && (
             <Entry
-              author={posts[3].attributes.author.data.attributes.name}
               title={posts[3].attributes.title}
-              slug={posts[3].attributes.slug}
               description={posts[3].attributes.description}
-              imageSrc={posts[3].attributes.cover.data.attributes.url}
+              pubDate={new Date(posts[3].attributes.publishedAt)}
+              slug={posts[3].attributes.slug}
+              cover={posts[3].attributes.cover.data.attributes}
             />
           )
         }

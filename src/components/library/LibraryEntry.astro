@@ -4,14 +4,14 @@ import FormattedDate from "../FormattedDate.astro";
 const { title, pubDate } = Astro.props;
 ---
 
-<a href="#" class="group space-y-2 border rounded-lg p-8 hover:bg-rose-50/45 transition group">
+<a href="#" class="group space-y-2 border flex flex-col gap-2 rounded-lg p-8 hover:bg-rose-50/45 transition group">
   <h2 class="text-3xl font-bold leading-7">
     {title}
   </h2>
   <p class="text-lg pt-2 text-gray-500 not-italic dark:text-gray-400">
     <FormattedDate date={pubDate} />
   </p>
-  <p class="text-md group-hover:underline">
+  <p class="text-md font-bold text-white btn btn-secondary group-hover:underline mt-6">
     Ver más
   </p>
 </a>
