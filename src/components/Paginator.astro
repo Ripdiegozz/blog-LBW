@@ -3,23 +3,36 @@ import { cn } from "@/lib/utils";
 
 const { totalResults, entriesPerPage, totalPages, currentPage } = Astro.props;
 
-const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+function generatePagination(currentPage: any, totalPages: any) {
+  const pages = [];
+  const startPage = Math.max(1, currentPage - 3);
+  const endPage = Math.min(totalPages, currentPage + 3);
 
-console.log(pages);
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+  }
+
+  return pages;
+}
+
+const pagesToGenerate = generatePagination(currentPage, totalPages);
 ---
 
 <div
   class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
 >
-  <div class="flex flex-1 justify-between sm:hidden">
+  <div class="flex flex-1 justify-between gap-2 sm:hidden">
     <a
-      href="#"
+      href={currentPage > 1 ? `/blog/posts/${currentPage - 1}` : "#"}
       class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 hover:bg-gray-50 font"
       >Anterior</a
     >
+    <span class="rounded-lg relative inline-flex items-center px-4 py-2 text-sm font-bold text-white bg-red-800/75">
+      {currentPage}
+    </span>
     <a
-      href="#"
-      class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 hover:bg-gray-50"
+      href={currentPage < totalPages ? `/blog/posts/${currentPage + 1}` : "#"}
+      class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 hover:bg-gray-50"
       >Siguiente</a
     >
   </div>
@@ -41,7 +54,7 @@ console.log(pages);
         aria-label="Pagination"
       >
         <a
-          href="#"
+          href={currentPage > 1 ? `/blog/posts/${currentPage - 1}` : "#"}
           class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
         >
           <span class="sr-only">Anterior</span>
@@ -58,23 +71,25 @@ console.log(pages);
           </svg>
         </a>
         {
-          pages.map((page: any) =>  (
-            <a
-              href="#"
-              class={cn(
-                "relative z-10 text-black border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 inline-flex items-center px-4 py-2 text-sm font-bold",
-                {
-                  "bg-indigo-600 text-white": page !== currentPage,
-                }
-              )}
-              aria-current="page"
-            >
-              {page}
-            </a>
-          ))
+          // Show 3 pages before and after the current page
+          pagesToGenerate.map((page) => {
+            return (
+              <a
+                href={`/blog/posts/${page}`}
+                class={cn(
+                  "relative inline-flex items-center px-4 py-2 text-sm font-bold text-black ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0",
+                  {
+                    "bg-red-800/75 text-white": page === currentPage,
+                  }
+                )}
+              >
+                {page}
+              </a>
+            );
+          })
         }
         <a
-          href="#"
+          href={currentPage < totalPages ? `/blog/posts/${currentPage + 1}` : "#"}
           class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
         >
           <span class="sr-only">Siguiente</span>

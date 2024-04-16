@@ -1,5 +1,5 @@
 ---
-import Entry from "@/components/blog/BlogEntry.astro";
+import Entry from "@/components/landing/BlogEntry.astro";
 import { cn } from "@/lib/utils";
 import type { Gallery } from "interfaces/gallery";
 import fetchApi from "lib/strapi";
@@ -9,7 +9,7 @@ const galleries = await fetchApi<Gallery[]>({
   wrappedByKey: "data",
 });
 
-console.log(galleries);
+// console.log(galleries);
 ---
 
 <!-- Last Entries -->
@@ -33,23 +33,23 @@ console.log(galleries);
         galleries.length > 0 && galleries.length > 3 ? (
           galleries
             .slice(0, 3)
-            .map((post) => (
+            .map((gallery) => (
               <Entry
-                title={post.attributes.title}
-                description={post.attributes.description}
-                pubDate={new Date(post.attributes.publishedAt)}
-                slug={post.attributes.slug}
-                cover={post.attributes.images.data[0].attributes.formats.thumbnail.url}
+                title={gallery.attributes.title}
+                description={gallery.attributes.description}
+                url={`/blog/post/${gallery.attributes.slug}`}
+                isGallery={true}
+                imageSrc={gallery.attributes.images.data[0].attributes.url}
               />
             ))
         ) : galleries.length > 0 ? (
-          galleries.map((post) => (
+          galleries.map((gallery) => (
             <Entry
-              title={post.attributes.title}
-              description={post.attributes.description}
-              pubDate={new Date(post.attributes.publishedAt)}
-              slug={post.attributes.slug}
-              cover={post.attributes.images.data[0].attributes.formats.thumbnail.url}
+              title={gallery.attributes.title}
+              description={gallery.attributes.description}
+              url={`/blog/post/${gallery.attributes.slug}`}
+              isGallery={true}
+              imageSrc={gallery.attributes.images.data[0].attributes.url}
             />
           ))
         ) : (
@@ -63,9 +63,9 @@ console.log(galleries);
             <Entry
               title={galleries[3].attributes.title}
               description={galleries[3].attributes.description}
-              pubDate={new Date(galleries[3].attributes.publishedAt)}
-              slug={galleries[3].attributes.slug}
-              cover={galleries[3].attributes.images.data[0].attributes.formats.thumbnail.url}
+              url={`/blog/post/${galleries[3].attributes.slug}`}
+              isGallery={true}
+              imageSrc={galleries[3].attributes.images.data[0].attributes.url}
             />
           )
         }

@@ -13,7 +13,7 @@ const TextRendererComponent = ({ content, quotePosition} : TextRendererProps) =>
       blocks={{
         // You can use the default components to set class names...
         paragraph: ({ children }) => (
-          <p className="text-neutral-900 w-full md:max-w-4xl">{children}</p>
+          <p className="text-neutral-900 w-full text-lg md:max-w-4xl">{children}</p>
         ),
         image: ({ image }) => (
           <div className="py-8">

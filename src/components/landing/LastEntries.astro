@@ -8,8 +8,6 @@ const posts = await fetchApi<Post[]>({
   endpoint: "/posts",
   wrappedByKey: "data",
 });
-
-console.log(posts);
 ---
 
 <!-- Last Entries -->
@@ -22,9 +20,9 @@ console.log(posts);
     </div>
     <div
       class={cn(
-        "flex flex-col md:flex-row items-center flex-wrap gap-4 justify-around py-4",
+        "flex flex-col md:flex-row items-center flex-wrap gap-2 justify-around py-4 container px-2",
         {
-          "justify-start": posts.length < 3,
+          "justify-center": posts.length < 3,
         }
       )}
     >
@@ -37,8 +35,7 @@ console.log(posts);
               <Entry
                 title={post.attributes.title}
                 description={post.attributes.description}
-                pubDate={new Date(post.attributes.publishedAt)}
-                slug={post.attributes.slug}
+                url={`/blog/post/${post.attributes.slug}`}
                 imageSrc={post.attributes.cover.data.attributes.url}
               />
             ))
@@ -47,8 +44,7 @@ console.log(posts);
             <Entry
               title={post.attributes.title}
               description={post.attributes.description}
-              pubDate={new Date(post.attributes.publishedAt)}
-              slug={post.attributes.slug}
+              url={`/blog/post/${post.attributes.slug}`}
               cover={post.attributes.cover.data.attributes}
             />
           ))
@@ -63,8 +59,7 @@ console.log(posts);
             <Entry
               title={posts[3].attributes.title}
               description={posts[3].attributes.description}
-              pubDate={new Date(posts[3].attributes.publishedAt)}
-              slug={posts[3].attributes.slug}
+              url={`/blog/post/${posts[3].attributes.slug}`}
               cover={posts[3].attributes.cover.data.attributes}
             />
           )

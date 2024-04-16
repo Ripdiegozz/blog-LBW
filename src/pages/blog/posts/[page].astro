@@ -1,25 +1,33 @@
 ---
-import type { GetStaticPaths } from "astro";
-import Header from "../../components/Header.astro";
+import Header from "@/components/Header.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
-import PageLayout from "@/layouts/PageLayout.astro";
-import BlogEntry from "@/components/blog/BlogEntry.astro";
-import fetchApi from "lib/strapi";
-import type { Post } from "interfaces/post";
 import Paginator from "@/components/Paginator.astro";
+import BlogEntry from "@/components/blog/BlogEntry.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+import type { Post } from "interfaces/post";
+import fetchApi from "lib/strapi";
 
-const currentPage = 1;
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const res = await fetchApi<Post[]>({
+    endpoint: "posts",
+    wrappedByKey: "data",
+  });
 
-const res = await fetchApi<any>({
-  endpoint: `posts?pagination[page]=${currentPage}&pagination[pageSize]=9`,
+  // Generate pages from our array of astronauts, with 2 to a page
+  return paginate(res, { pageSize: 9 });
+}
+// All paginated data is passed on the "page" prop
+const { page }: { page: any } = Astro.props;
+
+const resPagination = await fetchApi<any>({
+  endpoint: `posts?pagination[page]=${page.currentPage}&pagination[pageSize]=9`,
 });
 
-const totalResults: number = res.meta.pagination.total;
-const totalPages: number = res.meta.pagination.pageCount;
-// @ts-ignore
-const posts: Post[] = res.data;
+const totalResults: number = resPagination.meta.pagination.total;
+const totalPages: number = resPagination.meta.pagination.pageCount;
 ---
 
+<!--Display the current page number. Astro.params.page can also be used!-->
 <PageLayout title="Blog Fundaleon" description="Blog posts by the author">
   <Header />
   <MobileHeader />
@@ -37,7 +45,7 @@ const posts: Post[] = res.data;
       class="flex flex-wrap gap-10 md:gap-4 lg:gap-10 lg:grid lg:grid-cols-2 xl:grid-cols-3 mx-auto py-8"
     >
       {
-        posts.map((post) => (
+        page.data.map((post: Post) => (
           <BlogEntry
             title={post.attributes.title}
             pubDate={post.attributes.publishedAt}
@@ -51,7 +59,7 @@ const posts: Post[] = res.data;
     <Paginator
       totalPages={totalPages}
       totalResults={totalResults}
-      currentPage={currentPage}
+      currentPage={page.currentPage}
     />
   </div>
 </PageLayout>

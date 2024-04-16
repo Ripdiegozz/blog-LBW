@@ -1,68 +1,45 @@
 ---
 import { environment } from "@/environments/enviroment.develop";
-import FormattedDate from "../FormattedDate.astro";
 
-const { author, title, description, imageSrc, slug, pubDate } = Astro.props;
+const { title, description, imageSrc, url, isGallery } = Astro.props;
 ---
 
-{
-  // Use this template
-/*
-<article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm">
+<article
+  class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm break-words w-full md:max-w-xs"
+  style="min-height: 450px;"
+>
   <img
-    alt=""
-    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-    class="h-56 w-full object-cover"
+    alt={title}
+    src={`${environment.imagesUrl}${imageSrc}`}
+    class="h-56 md:w-[320px] w-full md:max-w-xs object-cover"
   />
 
-  <div class="p-4 sm:p-6">
-    <a href="#">
-      <h3 class="text-lg font-medium text-gray-900">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </h3>
-    </a>
-
-    <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-      pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-      mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-      dignissimos. Molestias explicabo corporis voluptatem?
-    </p>
-
-    <a href="#" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
-      Find out more
-
-      <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
-        &rarr;
-      </span>
-    </a>
-  </div>
-</article>*/
-}
-
-<article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm">
-  <img
-    alt=""
-    src={imageSrc}
-    class="h-56 w-full object-cover"
-  />
-
-  <div class="p-4 sm:p-6">
-    <a href={slug}>
-      <h3 class="text-lg font-medium text-gray-900">
+  <div class="p-4 sm:p-6 w-full md:max-w-xs break-words">
+    <a href={url} class="break-words">
+      <h3 class="text-lg font-bold text-gray-900 break-words min-h-[56px]">
         {title}
       </h3>
     </a>
 
-    <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+    <p
+      class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 break-words min-h-[68px]"
+    >
       {description}
     </p>
 
-    <a href={slug} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
-      Find out more
-
-      <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+    <a
+      href={url}
+      class="group mt-4 btn btn-secondary inline-flex items-center gap-1 text-sm text-white font-bold"
+    >
+      {
+        isGallery ? 'Ver galería' : 'Leer publicación'
+      }
+      <span
+        aria-hidden="true"
+        class="block transition-all group-hover:ms-0.5 rtl:rotate-180"
+      >
         &rarr;
       </span>
     </a>
   </div>
+</article>

@@ -1,8 +1,26 @@
 ---
+import { Resend } from "resend";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
+
+const resend = new Resend("re_SftbpNLW_9YmgGs6NU1bH8PeSLbZg52DE");
+
+const sendEmail = async () => {
+  const { data, error } = await resend.emails.send({
+    from: "Diego Garcia <onboarding@resend.dev>",
+    to: ["diegogarciag63@gmail.com"],
+    subject: "Hello World",
+    html: "<strong>It works!</strong>",
+  });
+
+  if (error) {
+    return console.error({ error });
+  }
+
+  console.log({ data });
+};
 ---
 
 <PageLayout
@@ -22,12 +40,12 @@ import PageLayout from "@/layouts/PageLayout.astro";
           Te responderemos lo más pronto posible.
         </p>
       </div>
-      <form action="POST" class="space-y-4">
+      <form class="space-y-4">
         <div class="flex flex-col md:grid md:grid-cols-2 gap-4">
           <div class="space-y-2 flex flex-col w-full">
             <label for="first-name">Primer Nombre</label>
             <input
-              class="input"
+              class="input input-bordered"
               id="first-name"
               placeholder="Ingresa tu nombre"
             />
@@ -35,7 +53,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
           <div class="space-y-2 flex flex-col w-full">
             <label for="last-name">Primer Apellido</label>
             <input
-              class="input"
+              class="input input-bordered"
               id="last-name"
               placeholder="Ingresa tu apellido"
             />
@@ -44,7 +62,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
         <div class="space-y-2 flex flex-col w-full">
           <label for="email"> Correo Electrónico </label>
           <input
-            class="input"
+            class="input input-bordered"
             id="email"
             placeholder="Ingresa tu correo electrónico"
             type="email"
@@ -57,8 +75,9 @@ import PageLayout from "@/layouts/PageLayout.astro";
             id="message"
             placeholder="Ingresa tu mensaje"></textarea>
         </div>
-        <button class="btn btn-md btn-primary text-white font-bold"
-          >Enviar mensaje</button
+        <button
+          class="btn btn-md btn-primary text-white font-bold"
+          onclick=`${sendEmail()}`>Enviar mensaje</button
         >
       </form>
     </div>
