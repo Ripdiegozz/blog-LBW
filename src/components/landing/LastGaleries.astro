@@ -37,7 +37,7 @@ const galleries = await fetchApi<Gallery[]>({
               <Entry
                 title={gallery.attributes.title}
                 description={gallery.attributes.description}
-                url={`/blog/post/${gallery.attributes.slug}`}
+                url={`/galeria/post/${gallery.attributes.slug}`}
                 isGallery={true}
                 imageSrc={gallery.attributes.images.data[0].attributes.url}
               />
@@ -47,7 +47,7 @@ const galleries = await fetchApi<Gallery[]>({
             <Entry
               title={gallery.attributes.title}
               description={gallery.attributes.description}
-              url={`/blog/post/${gallery.attributes.slug}`}
+              url={`/galeria/post/${gallery.attributes.slug}`}
               isGallery={true}
               imageSrc={gallery.attributes.images.data[0].attributes.url}
             />
@@ -63,7 +63,7 @@ const galleries = await fetchApi<Gallery[]>({
             <Entry
               title={galleries[3].attributes.title}
               description={galleries[3].attributes.description}
-              url={`/blog/post/${galleries[3].attributes.slug}`}
+              url={`/galeria/post/${galleries[3].attributes.slug}`}
               isGallery={true}
               imageSrc={galleries[3].attributes.images.data[0].attributes.url}
             />

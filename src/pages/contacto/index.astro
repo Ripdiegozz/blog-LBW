@@ -1,26 +1,8 @@
 ---
-import { Resend } from "resend";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-
-const resend = new Resend("re_SftbpNLW_9YmgGs6NU1bH8PeSLbZg52DE");
-
-const sendEmail = async () => {
-  const { data, error } = await resend.emails.send({
-    from: "Diego Garcia <onboarding@resend.dev>",
-    to: ["diegogarciag63@gmail.com"],
-    subject: "Hello World",
-    html: "<strong>It works!</strong>",
-  });
-
-  if (error) {
-    return console.error({ error });
-  }
-
-  console.log({ data });
-};
 ---
 
 <PageLayout
@@ -75,12 +57,53 @@ const sendEmail = async () => {
             id="message"
             placeholder="Ingresa tu mensaje"></textarea>
         </div>
-        <button
-          class="btn btn-md btn-primary text-white font-bold"
-          onclick=`${sendEmail()}`>Enviar mensaje</button
+        <button class="btn btn-md btn-primary text-white font-bold" onclick=``
+          >Enviar mensaje</button
         >
       </form>
     </div>
   </section>
+  <form id="contact-form">
+    <!-- To simplify the tutorial, the value is static. -->
+    <input type="hidden" name="contact_number" value="697483" />
+    <label>Name</label>
+    <input type="text" name="user_name" />
+    <label>Email</label>
+    <input type="email" name="user_email" />
+    <label>Message</label>
+    <textarea name="message"></textarea>
+    <input type="submit" value="Send" />
+  </form>
   <Footer />
 </PageLayout>
+
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>
+<script type="text/javascript">
+  (function () {
+    // https://dashboard.emailjs.com/admin/account
+    emailjs.init({
+      publicKey: "8a4uhB6IYPCtF9Aqv",
+    });
+  })();
+</script>
+<script type="text/javascript">
+  window.onload = function () {
+    document
+      .getElementById("contact-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        // these IDs from the previous steps
+        emailjs.sendForm("contact_service", "contact_form", this).then(
+          () => {
+            console.log("SUCCESS!");
+          },
+          (error) => {
+            console.log("FAILED...", error);
+          }
+        );
+      });
+  };
+</script>

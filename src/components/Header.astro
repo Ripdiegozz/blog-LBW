@@ -2,80 +2,13 @@
 import { cn } from "@/lib/utils";
 import HeaderLink from "./HeaderLink.astro";
 import SuggestionItem from "./SuggestionItem.astro";
+import fetchApi from "lib/strapi";
+import type { Post } from "interfaces/post";
 
-interface suggestionItem {
-  title: string;
-  description: string;
-  imageSrc: string;
-  slug: string;
-}
-
-const items: suggestionItem[] = [
-  {
-    title: "Astro",
-    description:
-      "Astro is a new kind of static site builder that delivers lightning-fast performance with a modern developer experience.",
-    imageSrc: "https://astro.build/img/logo.svg",
-    slug: "/astro",
-  },
-  {
-    title: "Snowpack",
-    description:
-      "Snowpack is a lightning-fast frontend build tool, designed for the modern web.",
-    imageSrc: "https://snowpack.dev/img/logo.png",
-    slug: "/snowpack",
-  },
-  {
-    title: "Preact",
-    description:
-      "Preact is a fast 3kB alternative to React with the same modern API.",
-    imageSrc: "https://preactjs.com/img/logo.svg",
-    slug: "/preact",
-  },
-  {
-    title: "TypeScript",
-    description:
-      "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
-    imageSrc:
-      "https://www.typescriptlang.org/assets/images/icons/apple-touch-icon.png",
-    slug: "/typescript",
-  },
-  {
-    title: "Tailwind CSS",
-    description:
-      "Tailwind CSS is a utility-first CSS framework for rapid UI development.",
-    imageSrc: "https://tailwindcss.com/favicon-32x32.png",
-    slug: "/tailwind",
-  },
-  {
-    title: "Vite",
-    description:
-      "Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects.",
-    imageSrc: "https://vitejs.dev/logo.svg",
-    slug: "/vite",
-  },
-  {
-    title: "ESBuild",
-    description:
-      "ESBuild is an extremely fast JavaScript bundler and minifier.",
-    imageSrc: "https://esbuild.github.io/favicon.svg",
-    slug: "/esbuild",
-  },
-  {
-    title: "Deno",
-    description:
-      "Deno is a simple, modern, and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.",
-    imageSrc: "https://deno.land/logo.svg",
-    slug: "/deno",
-  },
-  {
-    title: "Svelte",
-    description:
-      "Svelte is a radical new approach to building user interfaces with a compiler that converts your components into efficient JavaScript.",
-    imageSrc: "https://svelte.dev/favicon.png",
-    slug: "/svelte",
-  },
-];
+const posts = await fetchApi<Post[]>({
+  endpoint: "posts",
+  wrappedByKey: "data",
+});
 ---
 
 <header class="items-start hidden lg:flex border-b w-full">
@@ -129,12 +62,12 @@ const items: suggestionItem[] = [
               <!-- search results go here -->
               <!-- Test search results -->
               {
-                items.map((heading) => (
+                posts.map((heading) => (
                   <SuggestionItem
-                    title={heading.title}
-                    description={heading.description}
-                    imageSrc={heading.imageSrc}
-                    slug={heading.slug}
+                    title={heading.attributes.title}
+                    description={heading.attributes.description}
+                    imageSrc={heading.attributes.cover.data.attributes.url}
+                    slug={heading.attributes.slug}
                   />
                 ))
               }
