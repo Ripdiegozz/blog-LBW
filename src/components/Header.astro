@@ -1,14 +1,21 @@
 ---
-import { cn } from "@/lib/utils";
 import HeaderLink from "./HeaderLink.astro";
 import SuggestionItem from "./SuggestionItem.astro";
 import fetchApi from "lib/strapi";
 import type { Post } from "interfaces/post";
+import type { Gallery } from "interfaces/gallery";
 
 const posts = await fetchApi<Post[]>({
   endpoint: "posts",
   wrappedByKey: "data",
 });
+
+const galleries = await fetchApi<Gallery[]>({
+  endpoint: "galleries",
+  wrappedByKey: "data",
+});
+
+const data = [...posts, ...galleries];
 ---
 
 <header class="items-start hidden lg:flex border-b w-full">
@@ -24,7 +31,7 @@ const posts = await fetchApi<Post[]>({
         >
           Fundaleón
         </h2>
-        <section class="flex w-full">
+        <section class="flex">
           <div class="w-96 mr-10 relative">
             <label
               class="input input-md input-bordered flex items-center gap-2"
@@ -62,11 +69,10 @@ const posts = await fetchApi<Post[]>({
               <!-- search results go here -->
               <!-- Test search results -->
               {
-                posts.map((heading) => (
+                data.map((heading) => (
                   <SuggestionItem
                     title={heading.attributes.title}
-                    description={heading.attributes.description}
-                    imageSrc={heading.attributes.cover.data.attributes.url}
+                    pubDate={heading.attributes.publishedAt}
                     slug={heading.attributes.slug}
                   />
                 ))

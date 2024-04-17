@@ -12,7 +12,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
   <Header />
   <MobileHeader />
   <section class="pb-8 pt-20 lg:pt-14 space-y-4 container mx-auto">
-    <h1 class="text-4xl font-bold text-center mb-8">Contacta con nosotros</h1>
+    <h1 class="text-4xl font-bold text-center mb-8">Contáctate con nosotros</h1>
     <div class="container grid max-w-2xl gap-4 px-0 md:px-6 pb-12 md:pb-24">
       <div class="space-y-2">
         <p class="text-gray-500 dark:text-gray-400 text-lg">
@@ -22,13 +22,14 @@ import PageLayout from "@/layouts/PageLayout.astro";
           Te responderemos lo más pronto posible.
         </p>
       </div>
-      <form class="space-y-4">
+      <form class="space-y-4" id="contact-form">
         <div class="flex flex-col md:grid md:grid-cols-2 gap-4">
           <div class="space-y-2 flex flex-col w-full">
             <label for="first-name">Primer Nombre</label>
             <input
               class="input input-bordered"
               id="first-name"
+              name="first-name"
               placeholder="Ingresa tu nombre"
             />
           </div>
@@ -37,6 +38,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
             <input
               class="input input-bordered"
               id="last-name"
+              name="last-name"
               placeholder="Ingresa tu apellido"
             />
           </div>
@@ -46,6 +48,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
           <input
             class="input input-bordered"
             id="email"
+            name="email"
             placeholder="Ingresa tu correo electrónico"
             type="email"
           />
@@ -55,6 +58,7 @@ import PageLayout from "@/layouts/PageLayout.astro";
           <textarea
             class="input textarea-bordered min-h-[140px] resize-none p-2"
             id="message"
+            name="message"
             placeholder="Ingresa tu mensaje"></textarea>
         </div>
         <button class="btn btn-md btn-primary text-white font-bold" onclick=``
@@ -63,17 +67,6 @@ import PageLayout from "@/layouts/PageLayout.astro";
       </form>
     </div>
   </section>
-  <form id="contact-form">
-    <!-- To simplify the tutorial, the value is static. -->
-    <input type="hidden" name="contact_number" value="697483" />
-    <label>Name</label>
-    <input type="text" name="user_name" />
-    <label>Email</label>
-    <input type="email" name="user_email" />
-    <label>Message</label>
-    <textarea name="message"></textarea>
-    <input type="submit" value="Send" />
-  </form>
   <Footer />
 </PageLayout>
 
@@ -96,9 +89,11 @@ import PageLayout from "@/layouts/PageLayout.astro";
       .addEventListener("submit", function (event) {
         event.preventDefault();
         // these IDs from the previous steps
-        emailjs.sendForm("contact_service", "contact_form", this).then(
+        emailjs.sendForm("service_lsg791a", "template_qtiqerq", this).then(
           () => {
             console.log("SUCCESS!");
+            alert("Mensaje enviado correctamente. ¡Gracias!");
+            document.getElementById("contact-form").reset();
           },
           (error) => {
             console.log("FAILED...", error);
