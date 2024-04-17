@@ -5,13 +5,13 @@ const { title, description, imageSrc, url, isGallery } = Astro.props;
 ---
 
 <article
-  class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm break-words w-full md:max-w-xs"
+  class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm break-words w-full md:max-w-xs"
   style="min-height: 450px;"
 >
   <img
     alt={title}
     src={`${environment.imagesUrl}${imageSrc}`}
-    class="h-56 md:w-[320px] w-full md:max-w-xs object-cover"
+    class="h-56 md:w-[320px] w-full md:max-w-xs object-fill"
   />
 
   <div class="p-4 sm:p-6 w-full md:max-w-xs break-words">

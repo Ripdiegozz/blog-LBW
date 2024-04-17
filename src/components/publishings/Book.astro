@@ -1,0 +1,46 @@
+---
+import { environment } from "@/environments/enviroment.develop";
+
+const { title, author, coverImage, slug } = Astro.props;
+---
+
+<figure class="book-cover hover:-translate-y-2 transition-transform">
+  <img
+    src={`${environment.imagesUrl}${coverImage}`}
+    alt={title}
+    class="book-image"
+  />
+  <figcaption class="book-details">
+    <h2 class="book-title">{title}</h2>
+    <p class="book-author">{author}</p>
+  </figcaption>
+</figure>
+
+<style>
+  .book-cover {
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .book-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .book-details {
+    margin-top: 10px;
+  }
+
+  .book-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .book-author {
+    font-size: 16px;
+    color: #666;
+  }
+</style>

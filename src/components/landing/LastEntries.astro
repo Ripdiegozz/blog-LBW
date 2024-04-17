@@ -45,7 +45,7 @@ const posts = await fetchApi<Post[]>({
               title={post.attributes.title}
               description={post.attributes.description}
               url={`/blog/post/${post.attributes.slug}`}
-              cover={post.attributes.cover.data.attributes}
+              imageSrc={post.attributes.cover.data.attributes.url}
             />
           ))
         ) : (
@@ -60,7 +60,7 @@ const posts = await fetchApi<Post[]>({
               title={posts[3].attributes.title}
               description={posts[3].attributes.description}
               url={`/blog/post/${posts[3].attributes.slug}`}
-              cover={posts[3].attributes.cover.data.attributes}
+              imageSrc={posts[3].attributes.cover.data.attributes.url}
             />
           )
         }

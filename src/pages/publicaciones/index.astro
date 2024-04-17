@@ -1,0 +1,45 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+import BookComponent from "@/components/publishings/Book.astro";
+import fetchApi from "lib/strapi";
+import type { Book } from "interfaces/book";
+
+const books = await fetchApi<Book[]>({
+  endpoint: "books",
+  wrappedByKey: "data"
+});
+---
+
+<PageLayout
+  title="Publicaciones Fundaleón"
+  desciption="Bienvenido a las publicaciones de la Fundación Literaria León Bienvenido Weffer. Aquí encontrarás una selección de libros y revistas publicadas por la fundación."
+>
+  <Header />
+  <MobileHeader />
+  <div class="pb-8 pt-20 lg:pt-14 space-y-4 container mx-auto">
+    <div>
+      <h1 class="text-4xl font-bold">Publicaciones Fundaleón</h1>
+      <p class="py-4 text-lg max-w-3xl">
+        Bienvenido a las publicaciones de la Fundación Literaria León Bienvenido Weffer. Aquí encontrarás una selección de libros y revistas publicadas por la fundación.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {
+        books.map((book) => {
+          return (
+          <BookComponent
+            title={book.attributes.title}
+            description={book.attributes.description}
+            slug={book.attributes.slug}
+            coverImage={book.attributes.cover.data.attributes.url}
+          />
+        )
+        })
+      }
+    </div>
+  </div>
+  <Footer />
+</PageLayout>
