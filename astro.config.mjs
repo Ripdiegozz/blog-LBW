@@ -8,6 +8,7 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
+  output: "hybrid",
   build: {
     format: "file",
   },
