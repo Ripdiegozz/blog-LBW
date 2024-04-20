@@ -1,3 +1,3 @@
 export const environment = {
-    imagesUrl: 'https://whale-app-m9tn8.ondigitalocean.app',
+    imagesUrl: 'http://64.23.221.36:1337',
 };
