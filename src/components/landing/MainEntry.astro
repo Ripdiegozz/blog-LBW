@@ -11,11 +11,11 @@ const { title, description, pubDate, imageSrc, imageAlt, author, slug } =
   <div class="container px-6 pb-10 mx-auto">
     <div class="lg:mx-4 lg:flex lg:items-center">
       <img
-        class="object-fill border-2 border-slate-300 w-80 lg:mx-6 lg:w-[50%] rounded-xl h-72 lg:h-80"
+        class="object-fill border-2 border-slate-300 mx-auto w-[800px] my-4 lg:my-0 lg:mx-6 lg:w-[50%] rounded-xl h-72 lg:h-80"
         src={`${environment.imagesUrl}${imageSrc}`}
         alt={imageAlt}
       />
-      <div class="w-full lg:w-[42.5%]">
+      <div class="w-full lg:w-[42.5%] flex flex-col text-center items-center justify-center lg:items-start lg:text-left">
         <a
           href={`/blog/post/${slug}`}
           class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white break-words whitespace-pre-wrap"
@@ -31,7 +31,7 @@ const { title, description, pubDate, imageSrc, imageAlt, author, slug } =
 
         <a
           href={`/blog/post/${slug}`}
-          class="btn btn-secondary mt-4 text-white hover:underline transition py-2 px-10"
+          class="btn btn-secondary mt-4 text-white hover:underline transition py-2 px-20 lg:px-10"
         >
           Leer más
         </a>
