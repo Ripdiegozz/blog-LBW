@@ -5,7 +5,7 @@ export interface Book {
     id: number;
     attributes: {
         title: string;
-        author: {
+        authors: {
             data: Author | Author[];
         }
         cover: {

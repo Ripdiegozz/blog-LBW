@@ -34,6 +34,7 @@ const books = await fetchApi<Book[]>({
             title={book.attributes.title}
             description={book.attributes.description}
             slug={book.attributes.slug}
+            authors={book.attributes.authors}
             coverImage={book.attributes.cover.data.attributes.url}
           />
         )

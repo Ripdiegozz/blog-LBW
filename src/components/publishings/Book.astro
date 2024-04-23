@@ -1,7 +1,8 @@
 ---
 import { environment } from "@/environments/enviroment.develop";
+import type { Author } from "interfaces/author";
 
-const { title, author, coverImage, slug } = Astro.props;
+const { title, authors, coverImage, slug } = Astro.props;
 ---
 
 <figure class="book-cover hover:-translate-y-2 transition-transform">
@@ -12,7 +13,14 @@ const { title, author, coverImage, slug } = Astro.props;
   />
   <figcaption class="book-details">
     <h2 class="book-title">{title}</h2>
-    <p class="book-author">{author}</p>
+    <p class="book-author pt-4">
+      Por: {
+        // @ts-ignore
+        authors.data.length > 1
+          ? authors.data.map((author: Author) => author.attributes.name).join(", ")
+          : authors.data[0].attributes.name
+      }
+    </p>
   </figcaption>
 </figure>
 
