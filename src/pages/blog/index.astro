@@ -16,7 +16,10 @@ const res = await fetchApi<any>({
 
 const totalResults: number = res.meta.pagination.total;
 const totalPages: number = res.meta.pagination.pageCount;
-// @ts-ignore
+
+console.log("totalResults", totalResults);
+console.log("totalPages", totalPages);
+
 const posts: Post[] = res.data;
 ---
 

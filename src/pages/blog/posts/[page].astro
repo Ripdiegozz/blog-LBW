@@ -8,16 +8,19 @@ import type { Post } from "interfaces/post";
 import fetchApi from "lib/strapi";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
+  // Fetch all posts from the API
   const res = await fetchApi<Post[]>({
     endpoint: "posts",
     wrappedByKey: "data",
   });
 
-  // Generate pages from our array of astronauts, with 2 to a page
+  // Generate pages from our array of posts, with 9 to a page
   return paginate(res, { pageSize: 9 });
 }
 // All paginated data is passed on the "page" prop
 const { page }: { page: any } = Astro.props;
+
+console.log(page);
 
 const resPagination = await fetchApi<any>({
   endpoint: `posts?pagination[page]=${page.currentPage}&pagination[pageSize]=9`,

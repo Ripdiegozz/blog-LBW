@@ -8,42 +8,34 @@ import MartaPortada from "@/assets/landing/marta-portada.jpg";
   <!-- Foundation Logo - Only show if the path is "/" -->
   <h2 class="xl:text-7xl lg:text-6xl text-wrap break-words pl-2">
     FUNDA
-    <br>
+    <br />
     <span class="text-red-800">LEÓN</span>
   </h2>
 
-  <!-- leon face and book -->
-  <section class="mt-10 flex flex-col gap-6">
+  <!-- leon face and books -->
+  <section class="mt-10 flex flex-col gap-6" id="my-gallery">
     <div class="LBW__section--box flex flex-col">
-      <a data-fslightbox="lightbox" href={FotoLbw.src}
-        ><img
-          src={FotoLbw.src}
-          alt="foto-LBW"
-          class="face rounded-lg"
-        /></a
-      >
+      <a href={FotoLbw.src} target="_blank" data-lightbox="roadtrip">
+        <img src={FotoLbw.src} alt={"foto-LBW"} class={"face rounded-lg"} />
+      </a>
       <h3 class="font-bold text-2xl">León Bienvenido Wefer</h3>
       <p class="mb-[35px]">1885 - 1917</p>
     </div>
     <div class="LBW__section--box flex flex-col">
-      <a data-fslightbox="lightbox" href={PeregrinacionesPortada.src}
-        ><img
+      <a href={PeregrinacionesPortada.src} data-lightbox="roadtrip" target="_blank">
+        <img
           src={PeregrinacionesPortada.src}
           class="rounded-lg"
           alt="foto-Peregrinaciones"
-        /></a
-      >
+        />
+      </a>
       <h3 class="font-bold text-2xl">“Peregrinaciones”</h3>
       <p>Primera Edición, 1905</p>
       <p class="mb-[35px]">Segunda Edición Ampliada, 2006</p>
     </div>
     <div class="LBW__section--box flex flex-col">
-      <a data-fslightbox="lightbox" href={MartaPortada.src}>
-        <img
-          src={MartaPortada.src}
-          class="rounded-lg"
-          alt="foto-Marta"
-        />
+      <a href={MartaPortada.src} data-lightbox="roadtrip" target="_blank">
+        <img src={MartaPortada.src} class="rounded-lg" alt="foto-Marta" />
       </a>
       <h3 class="font-bold text-2xl">"Marta"</h3>
       <p></p>

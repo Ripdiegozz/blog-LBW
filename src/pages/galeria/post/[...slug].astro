@@ -1,20 +1,22 @@
 ---
 import type { GetStaticPaths } from "astro";
+import fetchApi from "../../../../lib/strapi";
+import type { Gallery } from "../../../../interfaces/gallery";
+import { environment } from "@/environments/enviroment.develop";
+
 import {
   TwitterIcon,
   FacebookIcon,
   InstagramIcon,
   LinkIcon,
 } from "lucide-react";
-import fetchApi from "../../../../lib/strapi";
-import type { Gallery } from "../../../../interfaces/gallery";
+
 import { Button } from "@/components/ui/button";
 import PageLayout from "@/layouts/PageLayout.astro";
 import Header from "@/components/Header.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import TextRendererComponent from "@/components/TextRendererComponent";
-import { environment } from "@/environments/enviroment.develop";
 
 export const getStaticPaths = (async () => {
   const galleries = await fetchApi<Gallery[]>({
@@ -30,6 +32,8 @@ export const getStaticPaths = (async () => {
     };
   });
 }) satisfies GetStaticPaths;
+
+export const prerender = true;
 
 const { slug } = Astro.params;
 
@@ -48,9 +52,13 @@ const gallery = await fetchApi<Gallery>({
       <div
         class="space-y-2 not-prose flex flex-col items-center justify-center"
       >
-        <div class="flex flex-col md:flex-row justify-between lg:gap-0 flex-wrap max-w-4xl w-full">
+        <div
+          class="flex flex-col md:flex-row justify-between lg:gap-0 flex-wrap max-w-4xl w-full"
+        >
           <div class="break-words max-w-xl text-center md:text-left">
-            <h2 class="text-4xl font-extrabold tracking-tight lg:text-5xl break-words whitespace-pre-wrap">
+            <h2
+              class="text-4xl font-extrabold tracking-tight lg:text-5xl break-words whitespace-pre-wrap"
+            >
               {gallery.attributes.title}
             </h2>
             <div class="flex flex-col md:flex-row gap-2 items-center pt-4">
@@ -58,8 +66,10 @@ const gallery = await fetchApi<Gallery>({
               <FormattedDate date={new Date(gallery.attributes.publishedAt)} />
             </div>
           </div>
-          <div class="flex flex-col mx-auto items-center md:mx-0 md:justify-end space-x-4 py-2 mb-10">
-            <span class="text-sm font-semibold text-gray-500">
+          <div
+            class="flex flex-col mx-auto items-center md:mx-0 md:justify-end space-x-4 py-2 mb-10"
+          >
+            <span class="text-sm font-semibold text-gray-500 pb-2">
               Compartir:
             </span>
             <div class="flex gap-2">
@@ -85,10 +95,15 @@ const gallery = await fetchApi<Gallery>({
         <div class="max-w-4xl pt-4 pb-10">
           <TextRendererComponent content={gallery.attributes.text} />
         </div>
-        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+        <div class="grid md:grid-cols-2 gap-4 md:gap-6" id="my-gallery">
           {
             gallery.attributes.images.data.map((image) => (
-              <a data-fslightbox="lightbox" target="_blank" href={`${environment.imagesUrl}${image.attributes.url}`}>
+              <a
+              href={`${environment.imagesUrl}${image.attributes.url}`}
+              data-pswp-width="2500"
+              data-pswp-height="1850"
+              target="_blank"
+              >
                 <img
                   alt={image.attributes.alternativeText}
                   class="aspect img hover:scale-105 transition-transform object-cover rounded-lg overflow-hidden border border-slate-200"

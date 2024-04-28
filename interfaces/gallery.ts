@@ -14,5 +14,8 @@ export interface Gallery {
     images: {
       data: serverImage[];
     };
+    cover: {
+      data: serverImage;
+    }
   };
 }

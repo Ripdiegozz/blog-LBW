@@ -32,21 +32,17 @@ const galleries = await fetchApi<Gallery[]>({
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {
-        galleries.map((gallery) => {
-          const randomImage = gallery.attributes.images.data[Math.floor(Math.random() *  gallery.attributes.images.data.length)];
-
-          return (
+        galleries.map((gallery) => (
           <GalleryEntry
             title={gallery.attributes.title}
             description={gallery.attributes.description}
             slug={gallery.attributes.slug}
             image={{
-              src: randomImage.attributes.url,
-              alt: randomImage.attributes.alternativeText,
+              src: gallery.attributes.cover.data.attributes.url,
+              alt: gallery.attributes.cover.data.attributes.alternativeText,
             }}
           />
-        )
-        })
+        ))
       }
     </div>
   </div>

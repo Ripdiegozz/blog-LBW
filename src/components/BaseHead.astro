@@ -27,6 +27,9 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <link rel="preload" href="/fonts/CormorantGaramond-Regular.ttf" as="font" type="font/ttf" crossorigin />
 <link rel="preload" href="/fonts/CormorantGaramond-Bold.ttf" as="font" type="font/ttf" crossorigin />
 
+<!-- CSS preloads -->
+<link href="../../node_modules/lightbox2/dist/css/lightbox.css" rel="stylesheet" />
+
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 

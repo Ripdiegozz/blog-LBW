@@ -1,8 +1,8 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import type { Post } from "interfaces/post";
 import fetchApi from "lib/strapi";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import type { Post } from "interfaces/post";
 
 import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
@@ -49,11 +49,6 @@ const mainPost = posts[0];
       </div>
     </div>
     <Footer />
-    <script>
-      // @ts-ignore
-      new VenoBox({
-        selector: ".my-link"
-      });
-    </script>
+    <script src="../../node_modules/lightbox2/dist/js/lightbox-plus-jquery.js"></script>
   </body>
 </html>
