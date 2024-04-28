@@ -20,7 +20,7 @@ const galleries = await fetchApi<Gallery[]>({
     </div>
     <div
       class={cn(
-        "flex flex-col md:flex-row items-center flex-wrap gap-4 justify-around py-4",
+        "flex flex-col md:flex-row items-center flex-wrap gap-4 lg:gap-0 justify-around py-4",
         {
           "justify-start": galleries.length < 3,
         }

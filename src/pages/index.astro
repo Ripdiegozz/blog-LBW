@@ -51,11 +51,9 @@ const mainPost = posts[0];
     <Footer />
     <script>
       // @ts-ignore
-      import * as fs from "fslightbox";
-
-      fs.fsLightboxInstances["fslightbox"].props.onOpen = function () {
-        // console.log("The first lightbox has opened.");
-      };
+      new VenoBox({
+        selector: ".my-link"
+      });
     </script>
   </body>
 </html>

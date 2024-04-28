@@ -9,13 +9,15 @@ const { title, description, pubDate, imageSrc, imageAlt, author, slug } =
 <!-- component -->
 <section class="bg-white dark:bg-gray-900">
   <div class="container px-6 pb-10 mx-auto">
-    <div class="lg:mx-4 lg:flex lg:items-center">
+    <div class="lg:flex lg:items-center">
       <img
-        class="object-fill border-2 border-slate-300 mx-auto w-[800px] my-4 lg:my-0 lg:mx-6 lg:w-[50%] rounded-xl h-72 lg:h-80"
+        class="object-fill border-2 border-slate-300 mx-auto lg:mx-0 lg:mr-auto w-[800px] my-4 lg:my-0 lg:w-[50%] rounded-xl h-72 lg:h-80"
         src={`${environment.imagesUrl}${imageSrc}`}
         alt={imageAlt}
       />
-      <div class="w-full lg:w-[42.5%] flex flex-col text-center items-center justify-center lg:items-start lg:text-left">
+      <div
+        class="w-full lg:w-[42.5%] flex flex-col text-center items-center justify-center lg:items-start lg:text-left"
+      >
         <a
           href={`/blog/post/${slug}`}
           class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white break-words whitespace-pre-wrap"

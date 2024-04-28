@@ -6,11 +6,13 @@ const { title, authors, coverImage, slug } = Astro.props;
 ---
 
 <figure class="book-cover hover:-translate-y-2 transition-transform">
-  <img
-    src={`${environment.imagesUrl}${coverImage}`}
-    alt={title}
-    class="book-image"
-  />
+  <a class="my-fs" href={`${environment.imagesUrl}${coverImage}`}>
+    <img
+      src={`${environment.imagesUrl}${coverImage}`}
+      alt={title}
+      class="book-image"
+    />
+  </a>
   <figcaption class="book-details">
     <h2 class="book-title">{title}</h2>
     <p class="book-author pt-4">
