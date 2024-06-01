@@ -7,48 +7,14 @@ const { title, description, pubDate, imageSrc, imageAlt, author, slug } =
 ---
 
 <!-- component -->
-<section class="bg-white dark:bg-gray-900">
-  <div class="container px-6 pb-10 mx-auto">
+<section class="bg-white dark:bg-gray-900 w-full">
+  <div class="container px-0 pb-10 mx-auto">
     <div class="lg:flex lg:items-center">
       <img
-        class="object-fill border-2 border-slate-300 mx-auto lg:mx-0 lg:mr-auto w-[800px] my-4 lg:my-0 lg:w-[50%] rounded-xl h-72 lg:h-80"
+        class="object-fill border-[14px] md:border-[26px] md:!border-l-[18px] md:!border-r-[14px] border-red-800 rounded-sm mx-auto h-[350px] md:h-auto lg:mx-0 lg:mr-auto w-full my-4 lg:my-0"
         src={`${environment.imagesUrl}${imageSrc}`}
         alt={imageAlt}
       />
-      <div
-        class="w-full lg:w-[42.5%] flex flex-col text-center items-center justify-center lg:items-start lg:text-left"
-      >
-        <a
-          href={`/blog/post/${slug}`}
-          class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white break-words whitespace-pre-wrap"
-        >
-          {title}
-        </a>
-
-        <p
-          class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm break-words"
-        >
-          {description}
-        </p>
-
-        <a
-          href={`/blog/post/${slug}`}
-          class="btn btn-secondary mt-4 text-white hover:underline transition py-2 px-20 lg:px-10"
-        >
-          Leer más
-        </a>
-
-        <div class="flex items-center lg:items-start mt-4">
-          <div>
-            <h1 class="text-md font-bold text-gray-700 dark:text-gray-200">
-              Por {author}
-            </h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400">
-              Publicado el <FormattedDate date={new Date(pubDate)} />
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>

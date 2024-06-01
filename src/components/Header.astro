@@ -4,6 +4,7 @@ import SuggestionItem from "./SuggestionItem.astro";
 import fetchApi from "lib/strapi";
 import type { Post } from "interfaces/post";
 import type { Gallery } from "interfaces/gallery";
+import { BookOpenIcon } from "lucide-react";
 
 const posts = await fetchApi<Post[]>({
   endpoint: "posts",
@@ -27,13 +28,14 @@ const data = [...posts, ...galleries];
       >
         <h2
           id="logo"
-          class="block !text-4xl pl-9 font-bold text-left justify-self-start"
+          class="flex items-center gap-2 !text-4xl font-bold text-left justify-self-start"
         >
-          Fundaleón
+          <BookOpenIcon size="32" />
+          Fundación Literaria León Bienvenido Weffer
         </h2>
         <section class="flex">
           <div class="w-96 mr-10 relative">
-            <label
+            <!-- <label
               class="input input-md input-bordered flex items-center gap-2"
             >
               <input
@@ -60,7 +62,7 @@ const data = [...posts, ...galleries];
                   d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
                   clip="evenodd"></path></svg
               >
-            </label>
+            </label> -->
             <ul
               id="searchResults"
               style="display: none;"
@@ -81,7 +83,7 @@ const data = [...posts, ...galleries];
           </div>
           <div class="social-links md:mr-4 gap-2">
             <a href="https://twitter.com/astrodotbuild" target="_blank">
-              <span class="sr-only">Sigue a Fundaleón en X</span>
+              <span class="sr-only">Sigue a la Fundación Literaria León Bienvenido Weffer en X</span>
               <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
                 ><path
                   fill="currentColor"
@@ -90,7 +92,7 @@ const data = [...posts, ...galleries];
               >
             </a>
             <a href="https://github.com/withastro/astro" target="_blank">
-              <span class="sr-only">Sigue a Fundaleón en Facebook</span>
+              <span class="sr-only">Sigue a la Fundación Literaria León Bienvenido Weffer en Facebook</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"

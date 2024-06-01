@@ -12,7 +12,7 @@ const posts = await fetchApi<Post[]>({
 
 <!-- Last Entries -->
 <section class="py-8 pt-12">
-  <div class="container">
+  <div class="container px-0">
     <div class="row">
       <div class="col-12">
         <h2 class="text-4xl font-bold">Últimos Posts</h2>
@@ -20,7 +20,7 @@ const posts = await fetchApi<Post[]>({
     </div>
     <div
       class={cn(
-        "flex flex-col md:flex-row items-center flex-wrap gap-4 lg:gap-0 justify-around py-4 container px-2",
+        "flex flex-col md:flex-row items-center flex-wrap gap-4 lg:gap-2 justify-around py-4 container px-2",
         {
           "justify-start": posts.length < 3,
         }

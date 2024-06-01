@@ -28,12 +28,11 @@ const mainPost = posts[0];
     <ViewTransitions />
   </head>
   <body>
-    <div class="flex py-4 w-full pb-8 pt-20 lg:pt-4 container px-2 md:px-4">
-      <Aside />
-      <div class="w-full lg:w-[80%]">
+    <div class="flex py-4 w-full pb-8 pt-10 lg:pt-4 container px-2 md:px-4">
+      <div class="w-full">
         <Header />
         <MobileHeader />
-        <main class="w-full lg:pt-8">
+        <div class="flex flex-col w-full mx-auto">
           <MainEntry
             title={mainPost.attributes.title}
             description={mainPost.attributes.description}
@@ -43,12 +42,18 @@ const mainPost = posts[0];
             imageAlt={mainPost.attributes.cover.data.attributes.alternativeText}
             author={mainPost.attributes.author.data.attributes.name}
           />
-          <LastEntries />
-          <LastGaleries />
-        </main>
+          <main class="w-full flex justify-between">
+            <Aside />
+            <div class="flex flex-col gap-3">
+              <LastEntries />
+              <LastGaleries />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
     <Footer />
-    <script src="../../node_modules/lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+    <script src="../../node_modules/lightbox2/dist/js/lightbox-plus-jquery.js"
+    ></script>
   </body>
 </html>

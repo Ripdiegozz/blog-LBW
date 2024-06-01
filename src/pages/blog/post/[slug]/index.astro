@@ -27,7 +27,7 @@ const post = await fetchApi<Post>({
 if (!post) return Astro.redirect('404');
 ---
 
-<PageLayout title="Blog Fundaleon" description="Blog posts by the author">
+<PageLayout title="Blog Fundación Literaria León Bienvenido Weffer" description="Blog posts by the author">
   <Header />
   <MobileHeader />
   <div class="pb-8 pt-4 lg:pt-0 px-4 container mx-auto">
@@ -39,7 +39,7 @@ if (!post) return Astro.redirect('404');
           <div
             class="flex flex-col md:flex-row justify-between pt-1 flex-wrap max-w-xl lg:max-w-6xl"
           >
-            <div class="break-words w-full md:max-w-xl">
+            <div class="break-words w-full md:max-w-xl pt-8 lg:pt-0">
               <h2
                 class="text-4xl font-extrabold tracking-tight lg:text-5xl break-words whitespace-pre-wrap"
               >
