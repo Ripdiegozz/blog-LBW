@@ -16,23 +16,6 @@ import FormattedDate from "@/components/FormattedDate.astro";
 import TextRendererComponent from "@/components/TextRendererComponent";
 import { environment } from "@/environments/enviroment.develop";
 
-export const getStaticPaths = (async () => {
-  const posts = await fetchApi<Post[]>({
-    endpoint: "/posts",
-    wrappedByKey: "data",
-  });
-
-  return posts.map((post) => {
-    return {
-      params: {
-        slug: post.attributes.slug,
-      },
-    };
-  });
-}) satisfies GetStaticPaths;
-
-export const prerender = true;
-
 const { slug } = Astro.params;
 
 const post = await fetchApi<Post>({
@@ -40,6 +23,8 @@ const post = await fetchApi<Post>({
   wrappedByKey: "data",
   wrappedByList: true,
 });
+
+if (!post) return Astro.redirect('404');
 ---
 
 <PageLayout title="Blog Fundaleon" description="Blog posts by the author">

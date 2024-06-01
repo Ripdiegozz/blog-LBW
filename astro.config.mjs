@@ -6,7 +6,6 @@ import react from "@astrojs/react";
 
 import vercel from "@astrojs/vercel/serverless";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://blog-lbw.vercel.app",
   output: "server",
@@ -15,6 +14,6 @@ export default defineConfig({
   },
   integrations: [mdx(), sitemap(), tailwind({
     applyBaseStyles: false
-  }),, react()],
+  }), react()],
   adapter: vercel()
 });

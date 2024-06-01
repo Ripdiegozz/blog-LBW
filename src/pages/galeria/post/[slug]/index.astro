@@ -18,23 +18,6 @@ import MobileHeader from "@/components/MobileHeader.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import TextRendererComponent from "@/components/TextRendererComponent";
 
-export const getStaticPaths = (async () => {
-  const galleries = await fetchApi<Gallery[]>({
-    endpoint: "/galleries",
-    wrappedByKey: "data",
-  });
-
-  return galleries.map((gallery) => {
-    return {
-      params: {
-        slug: gallery.attributes.slug,
-      },
-    };
-  });
-}) satisfies GetStaticPaths;
-
-export const prerender = true;
-
 const { slug } = Astro.params;
 
 const gallery = await fetchApi<Gallery>({
@@ -42,6 +25,8 @@ const gallery = await fetchApi<Gallery>({
   wrappedByKey: "data",
   wrappedByList: true,
 });
+
+if (!gallery) return Astro.redirect('/404')
 ---
 
 <PageLayout title="Blog Fundaleon" description="Blog posts by the author">
