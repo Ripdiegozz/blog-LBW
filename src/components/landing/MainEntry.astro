@@ -2,16 +2,16 @@
 import FormattedDate from "@/components/FormattedDate.astro";
 import { environment } from "@/environments/enviroment.develop";
 
-const { title, description, pubDate, imageSrc, imageAlt, author, slug } =
+const { imageSrc, imageAlt } =
   Astro.props;
 ---
 
 <!-- component -->
 <section class="bg-white dark:bg-gray-900 w-full">
-  <div class="container px-0 pb-10 mx-auto">
+  <div class="container px-0 pb-2 md:pb-10 mx-auto">
     <div class="lg:flex lg:items-center">
       <img
-        class="object-fill border-[14px] md:border-[26px] md:!border-l-[18px] md:!border-r-[14px] border-red-800 rounded-sm mx-auto h-[350px] md:h-auto lg:mx-0 lg:mr-auto w-full my-4 lg:my-0"
+        class="object-cover border-[14px] lg:border-[26px] md:!border-l-[18px] md:!border-r-[14px] border-red-800 rounded-sm mx-auto h-[350px] md:h-auto lg:mx-0 lg:mr-auto w-full my-4 lg:my-0"
         src={`${environment.imagesUrl}${imageSrc}`}
         alt={imageAlt}
       />

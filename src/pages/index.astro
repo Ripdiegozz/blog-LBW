@@ -34,18 +34,15 @@ const mainPost = posts[0];
         <MobileHeader />
         <div class="flex flex-col w-full mx-auto">
           <MainEntry
-            title={mainPost.attributes.title}
-            description={mainPost.attributes.description}
-            slug={mainPost.attributes.slug}
-            pubDate={new Date(mainPost.attributes.publishedAt)}
             imageSrc={mainPost.attributes.cover.data.attributes.url}
             imageAlt={mainPost.attributes.cover.data.attributes.alternativeText}
-            author={mainPost.attributes.author.data.attributes.name}
           />
+          <div class="divider py-0 my-2"></div>
           <main class="w-full flex justify-between">
             <Aside />
             <div class="flex flex-col gap-3">
               <LastEntries />
+              <div class="divider py-0 my-2"></div>
               <LastGaleries />
             </div>
           </main>

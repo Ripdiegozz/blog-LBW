@@ -3,6 +3,7 @@ import Entry from "@/components/landing/BlogEntry.astro";
 import { cn } from "@/lib/utils";
 import type { Post } from "interfaces/post";
 import fetchApi from "lib/strapi";
+import { ArrowRight } from "lucide-react";
 
 const posts = await fetchApi<Post[]>({
   endpoint: "/posts",
@@ -11,11 +12,16 @@ const posts = await fetchApi<Post[]>({
 ---
 
 <!-- Last Entries -->
-<section class="py-8 pt-12">
+<section class="py-8 pt-6 lg:pt-8">
   <div class="container px-0">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 flex w-full justify-between">
         <h2 class="text-4xl font-bold">Últimos Posts</h2>
+        <a
+          href="/blog"
+          class="text-lg text-primary flex hover:underline transition-all items-center"
+          >Ver todos <ArrowRight size="24" /></a
+        >
       </div>
     </div>
     <div
